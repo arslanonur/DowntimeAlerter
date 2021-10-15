@@ -1,0 +1,188 @@
+{
+  "Version": "1.0.0.3",
+  "MountPoints": [
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "be213340-62e5-4ccb-991d-72dc86ff6a2d",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.aspnetcore.components.webassembly.templates.3.2.1.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "12630877-b231-42e1-a4e7-0018155c6e92",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.dotnet.common.projecttemplates.3.1.3.1.15.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "959c9661-cf1d-4d2f-b0f9-0862ab6248a8",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.dotnet.test.projecttemplates.3.1.1.0.2-beta4.21268.1.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "799684f5-33ba-4d11-9cd3-308ce14172e2",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.dotnet.web.projecttemplates.3.1.3.1.15.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "bf4e2326-c43a-4737-8fa2-0d33d7672ef4",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.dotnet.web.spa.projecttemplates.3.1.3.1.15.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "82752344-a44f-4d3a-ba4e-468102556ab1",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.dotnet.common.itemtemplates.5.0.300-preview.21260.2.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "a45aaef3-64e9-48f1-a7a6-b31d794759ae",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.dotnet.common.projecttemplates.5.0.5.0.300-preview.21260.2.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "69a32be5-7cc9-4906-b126-7ac62d867199",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.dotnet.test.projecttemplates.5.0.1.0.2-beta4.21268.1.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "b24f5167-c1d4-43a5-b91c-aa16ec9da6de",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.dotnet.web.itemtemplates.5.0.7.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "d9330d6b-89bf-4404-ac11-0e362d5c08ad",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.dotnet.web.projecttemplates.5.0.5.0.7.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "57c934c9-4439-4ddc-9a4a-5616e99bfa9e",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.dotnet.web.spa.projecttemplates.5.0.5.0.7.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "228700fe-df29-4a00-8f2f-618ee0643940",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.dotnet.winforms.projecttemplates.5.0.7-servicing.21263.7.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "c4802abd-d313-468c-9de6-8268c0a7236b",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\microsoft.dotnet.wpf.projecttemplates.5.0.6-servicing.21263.3.nupkg"
+    },
+    {
+      "ParentMountPointId": "00000000-0000-0000-0000-000000000000",
+      "MountPointFactoryId": "94e92610-cf4c-4f6d-aeb6-9e42dde1899d",
+      "MountPointId": "532de06d-490d-489d-99dd-577728c896ce",
+      "Place": "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\packages\\nunit3.dotnetnew.template.1.8.1.nupkg"
+    }
+  ],
+  "ComponentGuidToAssemblyQualifiedName": {
+    "f85702b8-d199-42b1-bb9b-7f1380af57f8": "Microsoft.TemplateEngine.Edge.TemplateUpdates.DefaultInstallUnitDescriptorFactory, Microsoft.TemplateEngine.Edge, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "ac33c6a1-52ca-4215-b72d-2dce7f6a1d2f": "Microsoft.TemplateEngine.Edge.TemplateUpdates.NupkgInstallUnitDescriptorFactory, Microsoft.TemplateEngine.Edge, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "0c434df7-e2cb-4dee-b216-d7c58c8eb4b3": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.RunnableProjectGenerator, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "10919118-4e13-4fa9-825c-3b4da855578e": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.CaseChangeMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "11c6eacf-8d24-42fd-8fc6-84063fcd8f14": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.CoalesceMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "370996fe-2943-4aed-b2f6-ec03f0b75b4a": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.ConstantMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "bb625f71-6404-4550-98af-b2e546f46c5f": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.EvaluateMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "d49b3690-b1e5-410f-a260-e1d7e873d8b2": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.GeneratePortNumberMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "10919008-4e13-4fa8-825c-3b4da855578e": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.GuidMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "6a2c58e5-8743-484b-af3c-536770d31cee": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.JoinMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "f2b423d7-3c23-4489-816a-41d8d2a98596": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.NowMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "642e0443-f82b-4a4b-a797-cc1eb42221ae": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.ProcessValueFormMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "011e8dc1-8544-4360-9b40-65fd916049b7": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.RandomMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "8a4d4937-e23f-426d-8398-3bdbd1873adb": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.RegexMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "aa5957b0-07b1-4b68-847f-83713973e86f": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.RegexMatchMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "b57d64e0-9b4f-4abe-9366-711170fd5294": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.SwitchMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "3147965a-08e5-4523-b869-02c8e9a8aaa1": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Config.BalancedNestingConfig, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "3e8bcbf0-d631-45ba-a12d-fbf1de03aa38": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Config.ConditionalConfig, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "a1e27a4b-9608-47f1-b3b8-f70df62dc521": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Config.FlagsConfig, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "3fae1942-7257-4247-b44d-2dde07cb4a4a": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Config.IncludeConfig, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "3d33b3bf-f40e-43eb-a14d-f40516f880cd": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Config.RegionConfig, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "62db7f1f-a10e-46f0-953f-a28a03a81cd1": "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Config.ReplacementConfig, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "db5bf8d8-6181-496a-97da-58616e135701": "Microsoft.TemplateSearch.Common.TemplateUpdate.NupkgUpdater, Microsoft.TemplateSearch.Common, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "6ea368c4-8a56-444c-91d1-55150b296bf2": "Microsoft.TemplateEngine.Cli.TemplateSearch.CliNuGetMetadataSearchSource, Microsoft.TemplateEngine.Cli, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "d396686c-de0e-4de6-906d-291cd29fc5de": "Microsoft.TemplateEngine.Cli.PostActionProcessors.AddProjectsToSolutionPostAction, Microsoft.TemplateEngine.Cli, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "b17581d1-c5c9-4489-8f0a-004be667b814": "Microsoft.TemplateEngine.Cli.PostActionProcessors.AddReferencePostActionProcessor, Microsoft.TemplateEngine.Cli, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "cb9a6cf3-4f5c-4860-b9d2-03a574959774": "Microsoft.TemplateEngine.Cli.PostActionProcessors.ChmodPostActionProcessor, Microsoft.TemplateEngine.Cli, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "210d431b-a78b-4d2f-b762-4ed3e3ea9025": "Microsoft.TemplateEngine.Cli.PostActionProcessors.DotnetRestorePostActionProcessor, Microsoft.TemplateEngine.Cli, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "ac1156f7-bb77-4db8-b28f-24eebcca1e5c": "Microsoft.TemplateEngine.Cli.PostActionProcessors.InstructionDisplayPostActionProcessor, Microsoft.TemplateEngine.Cli, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60",
+    "3a7c4b45-1f5d-4a30-959a-51b88e82b5d2": "Microsoft.TemplateEngine.Cli.PostActionProcessors.ProcessStartPostActionProcessor, Microsoft.TemplateEngine.Cli, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60"
+  },
+  "ProbingPaths": [
+    "C:\\Users\\Onur ARSLAN\\.templateengine\\dotnetcli\\v5.0.301\\content"
+  ],
+  "ComponentTypeToGuidList": {
+    "Microsoft.TemplateEngine.Abstractions.TemplateUpdates.IInstallUnitDescriptorFactory, Microsoft.TemplateEngine.Abstractions, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60": [
+      "f85702b8-d199-42b1-bb9b-7f1380af57f8",
+      "ac33c6a1-52ca-4215-b72d-2dce7f6a1d2f"
+    ],
+    "Microsoft.TemplateEngine.Abstractions.IGenerator, Microsoft.TemplateEngine.Abstractions, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60": [
+      "0c434df7-e2cb-4dee-b216-d7c58c8eb4b3"
+    ],
+    "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.IMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60": [
+      "10919118-4e13-4fa9-825c-3b4da855578e",
+      "11c6eacf-8d24-42fd-8fc6-84063fcd8f14",
+      "370996fe-2943-4aed-b2f6-ec03f0b75b4a",
+      "bb625f71-6404-4550-98af-b2e546f46c5f",
+      "d49b3690-b1e5-410f-a260-e1d7e873d8b2",
+      "10919008-4e13-4fa8-825c-3b4da855578e",
+      "6a2c58e5-8743-484b-af3c-536770d31cee",
+      "f2b423d7-3c23-4489-816a-41d8d2a98596",
+      "642e0443-f82b-4a4b-a797-cc1eb42221ae",
+      "011e8dc1-8544-4360-9b40-65fd916049b7",
+      "8a4d4937-e23f-426d-8398-3bdbd1873adb",
+      "aa5957b0-07b1-4b68-847f-83713973e86f",
+      "b57d64e0-9b4f-4abe-9366-711170fd5294"
+    ],
+    "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Macros.IDeferredMacro, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60": [
+      "10919118-4e13-4fa9-825c-3b4da855578e",
+      "11c6eacf-8d24-42fd-8fc6-84063fcd8f14",
+      "370996fe-2943-4aed-b2f6-ec03f0b75b4a",
+      "d49b3690-b1e5-410f-a260-e1d7e873d8b2",
+      "10919008-4e13-4fa8-825c-3b4da855578e",
+      "6a2c58e5-8743-484b-af3c-536770d31cee",
+      "f2b423d7-3c23-4489-816a-41d8d2a98596",
+      "011e8dc1-8544-4360-9b40-65fd916049b7",
+      "8a4d4937-e23f-426d-8398-3bdbd1873adb",
+      "aa5957b0-07b1-4b68-847f-83713973e86f",
+      "b57d64e0-9b4f-4abe-9366-711170fd5294"
+    ],
+    "Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Config.IOperationConfig, Microsoft.TemplateEngine.Orchestrator.RunnableProjects, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60": [
+      "3147965a-08e5-4523-b869-02c8e9a8aaa1",
+      "3e8bcbf0-d631-45ba-a12d-fbf1de03aa38",
+      "a1e27a4b-9608-47f1-b3b8-f70df62dc521",
+      "3fae1942-7257-4247-b44d-2dde07cb4a4a",
+      "3d33b3bf-f40e-43eb-a14d-f40516f880cd",
+      "62db7f1f-a10e-46f0-953f-a28a03a81cd1"
+    ],
+    "Microsoft.TemplateEngine.Abstractions.TemplateUpdates.IUpdater, Microsoft.TemplateEngine.Abstractions, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60": [
+      "db5bf8d8-6181-496a-97da-58616e135701"
+    ],
+    "Microsoft.TemplateSearch.Common.ITemplateSearchSource, Microsoft.TemplateSearch.Common, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60": [
+      "6ea368c4-8a56-444c-91d1-55150b296bf2"
+    ],
+    "Microsoft.TemplateEngine.Cli.PostActionProcessors.IPostActionProcessor, Microsoft.TemplateEngine.Cli, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60": [
+      "d396686c-de0e-4de6-906d-291cd29fc5de",
+      "b17581d1-c5c9-4489-8f0a-004be667b814",
+      "cb9a6cf3-4f5c-4860-b9d2-03a574959774",
+      "210d431b-a78b-4d2f-b762-4ed3e3ea9025",
+      "ac1156f7-bb77-4db8-b28f-24eebcca1e5c",
+      "3a7c4b45-1f5d-4a30-959a-51b88e82b5d2"
+    ],
+    "Microsoft.TemplateEngine.Cli.PostActionProcessors.IPostActionProcessor2, Microsoft.TemplateEngine.Cli, Version=5.0.300.0, Culture=neutral, PublicKeyToken=adb9793829ddae60": [
+      "d396686c-de0e-4de6-906d-291cd29fc5de",
+      "b17581d1-c5c9-4489-8f0a-004be667b814",
+      "210d431b-a78b-4d2f-b762-4ed3e3ea9025"
+    ]
+  }
+}
