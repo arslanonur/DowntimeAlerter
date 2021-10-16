@@ -48,6 +48,7 @@
     </div>
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/JobProcess.js"></script>
 <script>
     $(document).ready(function () {
         $('#addSiteSubmitBtn').on('click', function () {
@@ -79,15 +80,16 @@
                 url: '@Url.Action("CreateSite")',
                 type: 'POST',
                 async: true,
-                data: formData,                
+                data: formData,
                 dataType: "json",
                 success: function (response) {
+                    StartRecurringNotificationJob();
                     bootbox.alert(response.msg);
                 },
                 error: function (ex) {
-                    bootbox.alert("Unexpected Error");                 
+                    bootbox.alert("Unexpected Error");
                 }
             });
         })
-    })
+    })    
 </script>

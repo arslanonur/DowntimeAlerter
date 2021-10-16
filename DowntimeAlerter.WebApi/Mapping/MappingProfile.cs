@@ -16,10 +16,7 @@ namespace DowntimeAlerter.WebApi.Mapping
             // Resource to Domain            
             CreateMap<SiteDTO, Site>();            
             CreateMap<LogsDTO, Logs>();
-            CreateMap<NotificationLogDTO, NotificationLogs>();
-
-            //CreateMap<SaveSiteEmailDTO, SiteEmail>();
-            //CreateMap<SaveSiteDTO, Site>();
+            CreateMap<NotificationLogDTO, NotificationLogs>();            
         }
     }
 }

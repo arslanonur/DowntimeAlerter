@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DowntimeAlerter.Core;
 using DowntimeAlerter.Core.Services;
 using DowntimeAlerter.Data;
@@ -10,11 +6,14 @@ using DowntimeAlerter.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Hangfire;
+using DowntimeAlerter.Core.Utilities;
+using Microsoft.AspNetCore.Identity;
+using DowntimeAlerter.WebApi.ActionFilters;
 
 namespace DowntimeAlerter.WebApi
 {
@@ -33,7 +32,7 @@ namespace DowntimeAlerter.WebApi
             services.AddDbContext<DowntimeAlerterDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DevConnection"),
                     x => x.MigrationsAssembly("DowntimeAlerter.DataAccess")));
-            
+
             services.AddTransient<ISiteService, SiteService>();            
             services.AddTransient<ILogsService, LogService>();
             services.AddTransient<INotificationLogsService, NotificationLogService>();
@@ -41,8 +40,13 @@ namespace DowntimeAlerter.WebApi
 
             services.AddControllersWithViews();
 
-            //services.AddScoped<LoginFilterAttribute>();->todo : onur
+            services.AddScoped<LoginFilterAttribute>();
             services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
+
+            services.AddHangfire(x =>
+                x.UseSqlServerStorage(
+                    "Server=(localdb)\\MSSQLLocalDB;Database=DowntimeAlerterForInvicti;Trusted_Connection=True;MultipleActiveResultSets=true"));
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -73,8 +77,8 @@ namespace DowntimeAlerter.WebApi
                 var context = serviceScope.ServiceProvider.GetRequiredService<DowntimeAlerterDbContext>();
                 context.Database.Migrate();
                 context.Database.EnsureCreated();
-                //app.UseHangfireDashboard();
-                //app.UseHangfireServer();
+                app.UseHangfireDashboard();
+                app.UseHangfireServer();
             }
         }
     }

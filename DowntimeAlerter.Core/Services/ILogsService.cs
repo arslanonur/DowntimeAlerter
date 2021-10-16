@@ -9,6 +9,7 @@ namespace DowntimeAlerter.Core.Services
 {
     public interface ILogsService
     {
-        Task<IEnumerable<Logs>> GetAllLogs();
+        Task<IEnumerable<Logs>> GetLogs();
+        Task<Logs> GetLog(int id);
     }
 }

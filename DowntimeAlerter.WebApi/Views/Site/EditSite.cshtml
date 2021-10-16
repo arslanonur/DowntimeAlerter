@@ -17,18 +17,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="secureRadios" id="radioHttp" value="http" checked>
-                                <label class="form-check-label" for="radioHttp">Http</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="secureRadios" id="radioHttps" value="https">
-                                <label class="form-check-label" for="radioHttps">Https</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-10">
+                    <div class="row">                        
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label class="floating-label" for="txtUrl">Url</label>
                                 <input type="text" value="@Model.Url" class="form-control" id="txtUrl" name="Url" required>
@@ -61,6 +51,7 @@
 
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/JobProcess.js"></script>
 <script>
     $(document).ready(function () {
         $('#addSiteSubmitBtn').on('click', function () {
@@ -84,6 +75,7 @@
                 data: formData,
                 dataType: "json",
                 success: function (response) {
+                    StartRecurringNotificationJob();
                     bootbox.alert(response.msg);
                 },
                 error: function () {

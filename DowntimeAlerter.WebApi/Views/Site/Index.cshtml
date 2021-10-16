@@ -40,6 +40,7 @@
 
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/JobProcess.js"></script>
 <script>
     $(document).ready(function () {
 
@@ -56,6 +57,7 @@
                     data: { id: id },
                     dataType: "json",
                     success: function (response) {
+                        StartRecurringNotificationJob();
                         bootbox.alert(response.msg);
                         $("#dataTable").load(" #dataTable > *");
                     },

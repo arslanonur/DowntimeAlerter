@@ -1,26 +1,37 @@
 ﻿using DowntimeAlerter.Core.Models;
+using DowntimeAlerter.Core.Utilities;
 using DowntimeAlerter.DataAccess.Configurations;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DowntimeAlerter.DataAccess
 {
     public class DowntimeAlerterDbContext : DbContext
     {
+        public DowntimeAlerterDbContext(DbContextOptions<DowntimeAlerterDbContext> options)
+             : base(options)
+        {
+        }        
         public DbSet<Site> Sites { get; set; }        
         public DbSet<Logs> Logs { get; set; }
         public DbSet<NotificationLogs> NotificationLogs { get; set; }
 
-        public DowntimeAlerterDbContext(DbContextOptions<DowntimeAlerterDbContext> options) : base(options) { }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            modelBuilder.ApplyConfiguration(new SiteConfiguration());            
-            modelBuilder.ApplyConfiguration(new NotificationLogsConfiguration());
+            builder.Entity<Logs>().ToTable(nameof(Logs), t => t.ExcludeFromMigrations());
+
+            builder
+                .ApplyConfiguration(new SiteConfiguration());
+
+            builder
+                .ApplyConfiguration(new NotificationLogsConfiguration());
+            //example sites 200 and 404
+            builder.Entity<Site>().HasData(
+                new Site { Id = 1, Name = "Google", Url = "https://google.com", IntervalTime = 40 });
+
+            builder.Entity<Site>().HasData(
+                new Site { Id = 2, Name = "Down Site Example", Url = "https://example.org/impolite", IntervalTime = 30 });
+
+            var md5Password = SecurePasswordHasher.CalculateMD5Hash("0606Invicti!");           
         }
     }
 }

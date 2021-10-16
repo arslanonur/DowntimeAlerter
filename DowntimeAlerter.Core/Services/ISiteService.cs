@@ -11,6 +11,7 @@ namespace DowntimeAlerter.Core.Services
     {
         Task<IEnumerable<Site>> GetAllSites();
         Task<Site> GetSiteById(int id);
+        Task<Site> GetSiteByUrl(string url);
         Task<Site> CreateSite(Site newSite);
         Task UpdateSite(Site siteToBeUpdated, Site site);
         Task DeleteSite(Site site);
