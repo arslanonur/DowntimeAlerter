@@ -75,7 +75,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             try
             {
                 var siteToBeUpdated = await _siteService.GetSiteById(siteDTO.Id);
-                if(siteToBeUpdated != null)
+                if (siteToBeUpdated != null)
                 {
                     var mappedSite = _mapper.Map<SiteDTO, Site>(siteDTO);
                     await _siteService.UpdateSite(siteToBeUpdated, mappedSite);
@@ -86,7 +86,27 @@ namespace DowntimeAlerter.WebApi.Controllers
                     return Json(new { success = false, msg = "Site was not found !" });
                 }
 
-                
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, msg = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteSite(int id)
+        {
+            try
+            {
+                var site = await _siteService.GetSiteById(id);
+                if (site != null)
+                {
+                    await _siteService.DeleteSite(site);
+                    return Json(new { success = false, msg = "The site deleted successfuly" });
+                }
+
+                return Json(new { success = false, msg = "Site was not found !" });
             }
             catch (Exception ex)
             {

@@ -17,17 +17,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="secureRadios" id="radioHttp" value="http" checked>
-                                <label class="form-check-label" for="radioHttp">Http</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="secureRadios" id="radioHttps" value="https">
-                                <label class="form-check-label" for="radioHttps">Https</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-10">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label class="floating-label" for="txtUrl">Url</label>
                                 <input type="text" class="form-control" id="txtUrl" name="Url" required>
@@ -63,6 +53,18 @@
         $('#addSiteSubmitBtn').on('click', function () {
 
             if (!$("#frmAddSite")[0].checkValidity()) {
+                if (!$('#txtName')[0].checkValidity()) {
+                    bootbox.alert("Fill Name area");
+                }
+                else if (!$('#txtUrl')[0].checkValidity()) {
+                    bootbox.alert("Fill Url area like url format");
+                }
+                else if (!$('#nbrIntervalTime')[0].checkValidity()) {
+                    bootbox.alert("Fill Interval Time area");
+                }
+                else if (!$('#inputEmail')[0].checkValidity()) {
+                    bootbox.alert("Fill Email area like email format");
+                }
                 return;
             }
 
@@ -80,10 +82,10 @@
                 data: formData,                
                 dataType: "json",
                 success: function (response) {
-                    alert(response.msg);
+                    bootbox.alert(response.msg);
                 },
-                error: function () {
-                    alert("error");
+                error: function (ex) {
+                    bootbox.alert("Unexpected Error");                 
                 }
             });
         })

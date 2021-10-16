@@ -6,7 +6,7 @@
         <span class="d-block m-t-5">use class <code>table-striped</code> inside table element</span>
     </div>
     <div class="card-body table-border-style">
-        <div class="table-responsive">
+        <div class="table-responsive" id="dataTable">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -16,7 +16,7 @@
                         <th>Interval Time</th>
                         <th>Email</th>
                         <th>Edit</th>
-                        <th>Delete</th>                        
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,10 +29,42 @@
                             <td>@item.IntervalTime</td>
                             <td>@item.Email</td>
                             <td><button type="button" onclick='location.href="@Url.Action("EditSite", "Site", new { id=item.Id})"' class="btn  btn-icon btn-outline-success" style="width: 30px; height: 30px;"><i class="feather icon-check-circle"></i></button></td>
-                            <td><button type="button" class="btn  btn-icon btn-outline-danger" style="width: 30px; height: 30px;"><i class="feather icon-slash"></i></button></tr>
+                            <td><button type="button" onclick='deleteSite(@item.Id)' class="btn  btn-icon btn-outline-danger" style="width: 30px; height: 30px;"><i class="feather icon-slash"></i></button>
+                        </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+    });
+
+    function deleteSite(id) {
+
+        bootbox.confirm("Delete the site?", function (e) {
+            if (e) {
+                $.ajax({
+                    url: '@Url.Action("DeleteSite")',
+                    type: 'POST',
+                    async: true,
+                    data: { id: id },
+                    dataType: "json",
+                    success: function (response) {
+                        bootbox.alert(response.msg);
+                        $("#dataTable").load(" #dataTable > *");
+                    },
+                    error: function () {
+                        bootbox.alert("error");
+                    }
+                });
+            }
+        })
+
+    }
+</script>
