@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DowntimeAlerter.Data.Configurations
+namespace DowntimeAlerter.DataAccess.Configurations
 {
     public class SiteConfiguration : IEntityTypeConfiguration<Site>
     {

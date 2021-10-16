@@ -6,7 +6,7 @@ using DowntimeAlerter.DataAccess;
 using DowntimeAlerter.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace DowntimeAlerter.Data.Repositories
+namespace DowntimeAlerter.DataAccess.Repositories
 {
     public class LogRepository : Repository<Logs>, ILogsRepository
     {

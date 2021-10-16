@@ -20,27 +20,35 @@ namespace DowntimeAlerter.WebApi.Controllers
             _mapper = mapper;
             _siteService = siteService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var allSites = await _siteService.GetAllSites();
+            var allSitesDTO = new List<SiteDTO>();
+            foreach (var site in allSites)
+            {
+                var mappedSiteDTO = _mapper.Map<Site, SiteDTO>(site);
+                allSitesDTO.Add(mappedSiteDTO);
+            }
+
+            return View(allSitesDTO);
         }
 
         public ActionResult AddSite()
         {
             return View();
         }
-        
+
         [HttpPost]
         public async Task<ActionResult> CreateSite(SiteDTO site)
         {
             try
             {
-                var mappedSite = _mapper.Map<SiteDTO,Site>(site);
+                var mappedSite = _mapper.Map<SiteDTO, Site>(site);
                 var createdSite = await _siteService.CreateSite(mappedSite);
-                if(createdSite != null)
+                if (createdSite != null)
                 {
                     return Json(new { success = true, msg = "The site was added." });
-                }           
+                }
                 else
                 {
                     return Json(new { success = false, msg = "Error when adding site!!" });
@@ -50,6 +58,38 @@ namespace DowntimeAlerter.WebApi.Controllers
             catch (Exception ex)
             {
 
+                return Json(new { success = false, msg = ex.Message });
+            }
+        }
+
+        public async Task<ActionResult> EditSite(int id)
+        {
+            var site = await _siteService.GetSiteById(id);
+            var mappedSite = _mapper.Map<Site, SiteDTO>(site);
+            return View(mappedSite);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateSite(SiteDTO siteDTO)
+        {
+            try
+            {
+                var siteToBeUpdated = await _siteService.GetSiteById(siteDTO.Id);
+                if(siteToBeUpdated != null)
+                {
+                    var mappedSite = _mapper.Map<SiteDTO, Site>(siteDTO);
+                    await _siteService.UpdateSite(siteToBeUpdated, mappedSite);
+                    return Json(new { success = false, msg = "The site updated successfuly" });
+                }
+                else
+                {
+                    return Json(new { success = false, msg = "Site was not found !" });
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
                 return Json(new { success = false, msg = ex.Message });
             }
         }

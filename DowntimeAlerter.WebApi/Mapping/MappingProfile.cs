@@ -2,7 +2,7 @@
 using DowntimeAlerter.Core.Models;
 using DowntimeAlerter.WebApi.DTO;
 
-namespace DowntimeAlerter.MVC.Mapping
+namespace DowntimeAlerter.WebApi.Mapping
 {
     public class MappingProfile : Profile
     {

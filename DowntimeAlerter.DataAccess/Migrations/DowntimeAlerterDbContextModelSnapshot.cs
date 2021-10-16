@@ -90,6 +90,9 @@ namespace DowntimeAlerter.DataAccess.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("IntervalTime")
                         .HasColumnType("bigint");
 
@@ -106,46 +109,6 @@ namespace DowntimeAlerter.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Site");
-                });
-
-            modelBuilder.Entity("DowntimeAlerter.Core.Models.SiteEmail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("SiteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SiteId");
-
-                    b.ToTable("SiteEmails");
-                });
-
-            modelBuilder.Entity("DowntimeAlerter.Core.Models.SiteEmail", b =>
-                {
-                    b.HasOne("DowntimeAlerter.Core.Models.Site", "Site")
-                        .WithMany("SiteEmails")
-                        .HasForeignKey("SiteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Site");
-                });
-
-            modelBuilder.Entity("DowntimeAlerter.Core.Models.Site", b =>
-                {
-                    b.Navigation("SiteEmails");
                 });
 #pragma warning restore 612, 618
         }

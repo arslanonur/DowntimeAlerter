@@ -49,37 +49,13 @@ namespace DowntimeAlerter.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     Url = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: false),
-                    IntervalTime = table.Column<long>(type: "bigint", nullable: false)
+                    IntervalTime = table.Column<long>(type: "bigint", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Site", x => x.Id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "SiteEmails",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    SiteId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SiteEmails", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_SiteEmails_Site_SiteId",
-                        column: x => x.SiteId,
-                        principalTable: "Site",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SiteEmails_SiteId",
-                table: "SiteEmails",
-                column: "SiteId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -89,9 +65,6 @@ namespace DowntimeAlerter.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "NotificationLogs");
-
-            migrationBuilder.DropTable(
-                name: "SiteEmails");
 
             migrationBuilder.DropTable(
                 name: "Site");

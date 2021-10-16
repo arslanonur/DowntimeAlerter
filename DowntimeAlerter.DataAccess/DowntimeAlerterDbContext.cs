@@ -1,5 +1,5 @@
 ﻿using DowntimeAlerter.Core.Models;
-using DowntimeAlerter.Data.Configurations;
+using DowntimeAlerter.DataAccess.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

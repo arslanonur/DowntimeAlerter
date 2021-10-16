@@ -9,7 +9,7 @@ namespace DowntimeAlerter.WebApi.DTO
         public string Name { get; set; }
         public string Url { get; set; }
         public long IntervalTime { get; set; }
-        public DateTime CheckedDate { get; set; }
-        public IEnumerable<SiteEmailDTO> SiteEmails { get; set; }
+        public string Email { get; set; }
+        public DateTime CheckedDate { get; set; }        
     }
 }

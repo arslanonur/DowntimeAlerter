@@ -1,6 +1,38 @@
-﻿@if (!string.IsNullOrEmpty(ViewBag.Result))
-{
-    <script>
-        alert(@ViewBag.Result);
-    </script>
-}
+﻿@model List<DowntimeAlerter.WebApi.DTO.SiteDTO>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Striped Table</h5>
+        <span class="d-block m-t-5">use class <code>table-striped</code> inside table element</span>
+    </div>
+    <div class="card-body table-border-style">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Url</th>
+                        <th>Interval Time</th>
+                        <th>Email</th>
+                        <th>Edit</th>
+                        <th>Delete</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Url</td>
+                            <td>@item.IntervalTime</td>
+                            <td>@item.Email</td>
+                            <td><button type="button" onclick='location.href="@Url.Action("EditSite", "Site", new { id=item.Id})"' class="btn  btn-icon btn-outline-success" style="width: 30px; height: 30px;"><i class="feather icon-check-circle"></i></button></td>
+                            <td><button type="button" class="btn  btn-icon btn-outline-danger" style="width: 30px; height: 30px;"><i class="feather icon-slash"></i></button></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

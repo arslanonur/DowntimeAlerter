@@ -44,6 +44,7 @@ namespace DowntimeAlerter.Services
             siteToBeUpdated.Name = site.Name;
             siteToBeUpdated.IntervalTime = site.IntervalTime;
             siteToBeUpdated.Url = site.Url;
+            siteToBeUpdated.Email = site.Email;            
             await _unitOfWork.CommitAsync();
         }
 

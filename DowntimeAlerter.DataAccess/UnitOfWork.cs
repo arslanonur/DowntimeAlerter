@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DowntimeAlerter.Core;
 using DowntimeAlerter.Core.Repositories;
-using DowntimeAlerter.Data.Repositories;
+using DowntimeAlerter.DataAccess.Repositories;
 using DowntimeAlerter.DataAccess;
 
 namespace DowntimeAlerter.Data
