@@ -21,14 +21,14 @@ namespace DowntimeAlerter.Data.Repositories
         public async Task<IEnumerable<Site>> GetAllWithSiteEmailAsync()
         {
             return await DowntimeAlerterDbContext.Sites
-                .Include(a => a.SiteEmails)
+                .Include(a => a.Email)
                 .ToListAsync();
         }
 
         public async Task<Site> GetWithSiteEmailByIdAsync(int id)
         {
             return await DowntimeAlerterDbContext.Sites
-                .Include(a => a.SiteEmails)
+                .Include(a => a.Email)
                 .SingleOrDefaultAsync(a => a.Id == id);
         }
 

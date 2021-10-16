@@ -1,0 +1,87 @@
+﻿@model DowntimeAlerter.WebApi.DTO.SiteDTO
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header" style="text-align:center">
+                <h5>Add Site</h5>
+            </div>
+            <div class="card-body">
+                <form id="frmAddSite">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="floating-label" for="Name">Name</label>
+                                <input type="text" class="form-control" id="txtName" name="Name" aria-describedby="siteName" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="secureRadios" id="radioHttp" value="http" checked>
+                                <label class="form-check-label" for="radioHttp">Http</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="secureRadios" id="radioHttps" value="https">
+                                <label class="form-check-label" for="radioHttps">Https</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <label class="floating-label" for="txtUrl">Url</label>
+                                <input type="text" class="form-control" id="txtUrl" name="Url" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="floating-label" for="Interval">Interval (second)</label>
+                                <input type="number" class="form-control" id="nbrIntervalTime" name="IntervalTime" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="floating-label" for="Email">Email</label>
+                                <input type="email" class="form-control" id="inputEmail" name="Email" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="float:right">
+                        <button type="submit" id="addSiteSubmitBtn" class="btn btn-primary mb-2">Add Sites</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#frmAddSite').on('submit', function () {
+            debugger;
+            var formData = {
+                Name: $('#txtName').val(),
+                Url: $('#txtUrl').val(),
+                IntervalTime: $('#nbrIntervalTime').val(),
+                Email: $('#inputEmail').val(),
+            }
+
+            $.ajax({
+                url: '@Url.Action("CreateSite")',
+                type: 'POST',
+                async: true,
+                data: formData,                
+                dataType: "json",
+                success: function (response) {
+                    alert(response.msg);
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        })
+    })
+</script>

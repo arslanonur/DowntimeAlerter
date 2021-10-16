@@ -11,8 +11,7 @@ namespace DowntimeAlerter.DataAccess
 {
     public class DowntimeAlerterDbContext : DbContext
     {
-        public DbSet<Site> Sites { get; set; }
-        public DbSet<SiteEmail> SiteEmails { get; set; }
+        public DbSet<Site> Sites { get; set; }        
         public DbSet<Logs> Logs { get; set; }
         public DbSet<NotificationLogs> NotificationLogs { get; set; }
 
@@ -20,8 +19,7 @@ namespace DowntimeAlerter.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new SiteConfiguration());
-            modelBuilder.ApplyConfiguration(new SiteEmailConfiguration());
+            modelBuilder.ApplyConfiguration(new SiteConfiguration());            
             modelBuilder.ApplyConfiguration(new NotificationLogsConfiguration());
         }
     }

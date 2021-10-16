@@ -33,8 +33,7 @@ namespace DowntimeAlerter.WebApi
             services.AddDbContext<DowntimeAlerterDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DevConnection"),
                     x => x.MigrationsAssembly("DowntimeAlerter.DataAccess")));
-
-            services.AddTransient<ISiteEmailService, SiteEmailService>();
+            
             services.AddTransient<ISiteService, SiteService>();            
             services.AddTransient<ILogsService, LogService>();
             services.AddTransient<INotificationLogsService, NotificationLogService>();
@@ -43,8 +42,7 @@ namespace DowntimeAlerter.WebApi
             services.AddControllersWithViews();
 
             //services.AddScoped<LoginFilterAttribute>();->todo : onur
-            services.AddSingleton<IHttpContextAccessor,
-                HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

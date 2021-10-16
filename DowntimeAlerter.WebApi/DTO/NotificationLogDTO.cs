@@ -1,7 +1,7 @@
 ﻿using System;
 using DowntimeAlerter.Core.Enums;
 
-namespace DowntimeAlerter.MVC.DTO
+namespace DowntimeAlerter.WebApi.DTO
 {
     public class NotificationLogDTO
     {

@@ -11,16 +11,12 @@ namespace DowntimeAlerter.Data
         private readonly DowntimeAlerterDbContext _context;
         private LogRepository _logRepository;
         private NotificationLogRepository _notificaitonLogRepository;
-        private SiteEmailRepository _siteEmailRepository;
         private SiteRepository _siteRepository;        
 
         public UnitOfWork(DowntimeAlerterDbContext context)
         {
             _context = context;
         }
-
-        public ISiteEmailRepository SiteEmail =>
-            _siteEmailRepository = _siteEmailRepository ?? new SiteEmailRepository(_context);
 
         public ISiteRepository Site => _siteRepository ??= new SiteRepository(_context);       
 

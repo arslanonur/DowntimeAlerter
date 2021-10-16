@@ -1,4 +1,4 @@
-﻿namespace DowntimeAlerter.MVC.DTO
+﻿namespace DowntimeAlerter.WebApi.DTO
 {
     public class SiteEmailDTO
     {
