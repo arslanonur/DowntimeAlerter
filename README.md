@@ -1,7 +1,6 @@
-# DowntimeAlerter
+![alt text](https://user-images.githubusercontent.com/6920376/137645985-2861fff9-5718-4566-99b5-7220fe2f1589.png)
+## Downtime Alerter
 Downtime Alerter .net core mvc application for Invicti
-
-### Down Time Alerter
 
 **Scenario**
 
@@ -9,11 +8,10 @@ You are developing a web application to monitor target applications’ health. I
 input and periodically checks whether it’s up or not. It sends a notification message when a
 request to the URL returns a response code other than 2XX.
 
-● The user should be able to create/update/delete target apps.
-● The user should be able to configure a name and URL for the target app.
-● The user should be able to configure a monitoring interval for the target app.
-● A notification should be sent if the target app is down. Currently an email notification will
-be enough, but it should be easy to add another notification types.
+- ● The user should be able to create/update/delete target apps.
+- ● The user should be able to configure a name and URL for the target app.
+- ● The user should be able to configure a monitoring interval for the target app.
+- ● A notification should be sent if the target app is down. Currently an email notification will be enough, but it should be easy to add another notification types.
 
 **Screenshots from Application**
 ![alt text](https://user-images.githubusercontent.com/6920376/137645908-fca0dfe2-dbd0-4fca-8496-28f357cea097.PNG)
