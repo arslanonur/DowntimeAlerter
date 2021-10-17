@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<DowntimeAlerter.WebApi.DTO.NotificationLogDTO>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -51,6 +52,58 @@
         </div>
     </div>
     <!-- support-section end -->
+
+    <div class="card">
+        <div class="card-header">
+            <h5>Last Recorded 10 Notifications Logs</h5>
+        </div>
+        <div class="card-body table-border-style">
+            <div class="table-responsive" id="dataTable">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>State</th>
+                            <th>Site Name</th>
+                            <th>NotificationType</th>
+                            <th>Message</th>
+                            <th>Checked Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var rowNum = 0; }
+                        @foreach (var item in Model)
+                        {
+                            rowNum++;
+                            @if (item.State == "Down")
+                            {
+                                <tr class="">
+                                    <td>@rowNum</td>
+                                    <td style="background: #ffa5a5;">@item.State</td>
+                                    <td>@item.SiteName</td>
+                                    <td>@item.NotificationType</td>
+                                    <td>@item.Message</td>
+                                    <td>@item.CheckedDate.ToString()</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr class="">
+                                    <td>@rowNum</td>
+                                    <td style="background: #cce4af;">@item.State</td>
+                                    <td>@item.SiteName</td>
+                                    <td>@item.NotificationType</td>
+                                    <td>@item.Message</td>
+                                    <td>@item.CheckedDate.ToString()</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 

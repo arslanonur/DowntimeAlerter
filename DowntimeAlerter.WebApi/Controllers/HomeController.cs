@@ -44,11 +44,13 @@ namespace DowntimeAlerter.WebApi.Controllers
                     _mapper.Map<IEnumerable<NotificationLogs>, IEnumerable<NotificationLogDTO>>(notificationLogs);
                 var downStateCount = notificationLogsResource.Count(x => x.State == StateType.Down.ToString());
                 var upStateCount = notificationLogsResource.Count(x => x.State == StateType.Up.ToString());
+                var last10RecordNotifications = notificationLogsResource.TakeLast(10).OrderByDescending(x=>x.Id);
 
                 ViewBag.SiteCount = siteResources.Count();
                 ViewBag.NotificationLogsCount = notificationLogsResource.Count();
                 ViewBag.DownStateCount = downStateCount;
                 ViewBag.UpStateCount = upStateCount;
+                return View(last10RecordNotifications);
             }
             catch (Exception ex)
             {
