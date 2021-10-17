@@ -1,6 +1,5 @@
+### Down Time Alerter
 ![alt text](https://user-images.githubusercontent.com/6920376/137645985-2861fff9-5718-4566-99b5-7220fe2f1589.png)
-## Downtime Alerter
-Downtime Alerter .net core mvc application for Invicti
 
 **Scenario**
 
@@ -13,7 +12,22 @@ request to the URL returns a response code other than 2XX.
 - ● The user should be able to configure a monitoring interval for the target app.
 - ● A notification should be sent if the target app is down. Currently an email notification will be enough, but it should be easy to add another notification types.
 
-**Screenshots from Application**
+**Built With**
+
+- ● .Net Core MVC 
+- ● Jquery
+- ● Hangfire
+- ● MsSql
+- ● AblePro Template
+- ● XUnit
+
+**Getting Started**
+
+*Default user information for login:*
+- Username: onurarslan
+- Password:  0606Invicti!
+
+**Screenshots**
 ![alt text](https://user-images.githubusercontent.com/6920376/137645908-fca0dfe2-dbd0-4fca-8496-28f357cea097.PNG)
 ![alt text](https://user-images.githubusercontent.com/6920376/137645915-89f78e6d-f796-4da9-bc39-c5df39db1dec.PNG)
 ![alt text](https://user-images.githubusercontent.com/6920376/137645920-90390c49-f1c3-4b78-ac8e-f887ff5ba8b3.PNG)
