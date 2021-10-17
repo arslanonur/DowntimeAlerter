@@ -15,9 +15,11 @@ using MailKit.Security;
 using System.Net.Http;
 using Hangfire;
 using Hangfire.Storage;
+using DowntimeAlerter.WebApi.ActionFilters;
 
 namespace DowntimeAlerter.WebApi.Controllers
 {
+    [ServiceFilter(typeof(LoginFilterAttribute))]
     public class JobController : Controller
     {
         private readonly HttpClient _httpClient;

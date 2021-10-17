@@ -12,7 +12,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DowntimeAlerter.WebApi.Controllers
-{    
+{
+    [ServiceFilter(typeof(LoginFilterAttribute))]
     public class SiteController : Controller
     {
         private readonly ILogger<SiteController> _logger;

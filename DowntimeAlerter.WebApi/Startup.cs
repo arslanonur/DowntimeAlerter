@@ -36,6 +36,7 @@ namespace DowntimeAlerter.WebApi
             services.AddTransient<ISiteService, SiteService>();            
             services.AddTransient<ILogsService, LogService>();
             services.AddTransient<INotificationLogsService, NotificationLogService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddAutoMapper(typeof(Startup));
 
             services.AddControllersWithViews();

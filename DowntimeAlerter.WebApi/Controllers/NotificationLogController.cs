@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace DowntimeAlerter.WebApi.Controllers
-{    
+{
+    [ServiceFilter(typeof(LoginFilterAttribute))]
     public class NotificationLogController : Controller
     {
         private readonly ILogger<NotificationLogController> _logger;

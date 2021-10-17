@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DowntimeAlerter.Services", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DowntimeAlerter.DataAccess", "DowntimeAlerter.DataAccess\DowntimeAlerter.DataAccess.csproj", "{933E1BDF-49C3-405A-931D-C46034A8AA7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DowntimeAlerter.WebApi", "DowntimeAlerter.WebApi\DowntimeAlerter.WebApi.csproj", "{B8CD7940-3FF4-4089-B19D-4F58C797B6C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DowntimeAlerter.WebApi", "DowntimeAlerter.WebApi\DowntimeAlerter.WebApi.csproj", "{B8CD7940-3FF4-4089-B19D-4F58C797B6C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

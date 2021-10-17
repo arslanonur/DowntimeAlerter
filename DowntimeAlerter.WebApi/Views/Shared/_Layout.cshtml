@@ -13,19 +13,29 @@
     <link rel="stylesheet" href="~/abletheme/css/style.css">
 </head>
 <body>
+
     <!-- [ navigation menu ] start -->
     <nav class="pcoded-navbar theme-horizontal menu-dark ">
-        <div class="navbar-wrapper  ">
+        <div class="navbar-wrapper container">
             <div class="navbar-content scroll-div ">
-                <ul class="nav pcoded-inner-navbar sidenav-inner">
+                <ul class="nav pcoded-inner-navbar sidenav-inner" style=" width: 100%;">
                     <li class="nav-item">
-                        <a href="@Url.Action("Index","Home")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Homepage</span></a>
+                        <a href="@Url.Action("Index","Home")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Homepage</span></a>
                     </li>
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Sites</span></a>
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-tv"></i></span><span class="pcoded-mtext">Sites</span></a>
                         <ul class="pcoded-submenu">
                             <li><a href="@Url.Action("AddSite","Site")">Add Site</a></li>
                             <li><a href="@Url.Action("Index","Site")">List Sites</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Users</span></a>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu" style=" right: 0; float: right; ">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Authentication</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="@Url.Action("Logout","Login")" target="_blank">Logout</a></li>                            
                         </ul>
                     </li>
                 </ul>

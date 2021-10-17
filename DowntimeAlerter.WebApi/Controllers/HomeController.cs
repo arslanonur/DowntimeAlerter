@@ -9,7 +9,8 @@ using DowntimeAlerter.WebApi.Models;
 using DowntimeAlerter.WebApi.ActionFilters;
 
 namespace DowntimeAlerter.WebApi.Controllers
-{    
+{
+    [ServiceFilter(typeof(LoginFilterAttribute))]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -11,7 +11,8 @@ namespace DowntimeAlerter.Data
         private readonly DowntimeAlerterDbContext _context;
         private LogRepository _logRepository;
         private NotificationLogRepository _notificaitonLogRepository;
-        private SiteRepository _siteRepository;        
+        private SiteRepository _siteRepository;
+        private UserRepository _userRepository;
 
         public UnitOfWork(DowntimeAlerterDbContext context)
         {
@@ -22,7 +23,9 @@ namespace DowntimeAlerter.Data
 
         public ILogsRepository Logs => _logRepository ??= new LogRepository(_context);
 
-        public INotificationLogsRepository NotificationLogs => _notificaitonLogRepository ??= new NotificationLogRepository(_context);        
+        public INotificationLogsRepository NotificationLogs => _notificaitonLogRepository ??= new NotificationLogRepository(_context);
+
+        public IUserRepository Users => _userRepository ??= new UserRepository(_context);
 
         public async Task<int> CommitAsync()
         {

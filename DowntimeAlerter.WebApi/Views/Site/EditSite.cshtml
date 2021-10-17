@@ -51,7 +51,6 @@
 
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/js/JobProcess.js"></script>
 <script>
     $(document).ready(function () {
         $('#addSiteSubmitBtn').on('click', function () {
@@ -82,6 +81,22 @@
                     bootbox.alert("Unexpected Error");
                 }
             });
+
         })
+
+        function StartRecurringNotificationJob() {
+            $.ajax({
+                url: '@Url.Action("StartRecurringNotificationJob","Job")',
+                type: 'GET',
+                async: true,
+                dataType: "json",
+                success: function (response) {
+
+                },
+                error: function (ex) {
+
+                }
+            });
+        }
     })
 </script>

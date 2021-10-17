@@ -12,7 +12,7 @@ namespace DowntimeAlerter.Core
         ILogsRepository Logs { get; }
         INotificationLogsRepository NotificationLogs { get; }
         ISiteRepository Site { get; }
-
+        IUserRepository Users { get; }
         Task<int> CommitAsync();
     }
 }
