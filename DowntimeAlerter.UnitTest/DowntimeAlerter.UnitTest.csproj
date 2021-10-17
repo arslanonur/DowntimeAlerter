@@ -4,6 +4,12 @@
     <TargetFramework>net5.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <ApplicationIcon />
+
+    <OutputType>Library</OutputType>
+
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DowntimeAlerter.Core\DowntimeAlerter.Core.csproj" />
+    <ProjectReference Include="..\DowntimeAlerter.Services\DowntimeAlerter.Services.csproj" />
     <ProjectReference Include="..\DowntimeAlerter.WebApi\DowntimeAlerter.WebApi.csproj" />
   </ItemGroup>
 
