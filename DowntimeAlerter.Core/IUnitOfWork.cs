@@ -9,7 +9,7 @@ namespace DowntimeAlerter.Core
 {
     public interface IUnitOfWork : IDisposable
     {
-        ILogsRepository Logs { get; }
+        ILogRepository Log { get; }
         INotificationLogsRepository NotificationLogs { get; }
         ISiteRepository Site { get; }
         IUserRepository Users { get; }

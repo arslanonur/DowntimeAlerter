@@ -5,9 +5,9 @@ using System;
 
 namespace DowntimeAlerter.DataAccess.Configurations
 {
-    public class LogsConfiguration : IEntityTypeConfiguration<Logs>
+    public class LogsConfiguration : IEntityTypeConfiguration<Log>
     {
-        public void Configure(EntityTypeBuilder<Logs> builder)
+        public void Configure(EntityTypeBuilder<Log> builder)
         {
             builder
                 .HasKey(m => m.Id);

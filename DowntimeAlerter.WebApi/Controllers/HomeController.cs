@@ -18,14 +18,14 @@ namespace DowntimeAlerter.WebApi.Controllers
     [ServiceFilter(typeof(LoginFilterAttribute))]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogService _logService;
         private readonly IMapper _mapper;
         private readonly INotificationLogsService _notificationLogService;
         private readonly ISiteService _siteService;
 
-        public HomeController(ILogger<HomeController> logger, IMapper mapper, INotificationLogsService notificationLogsService, ISiteService siteService)
+        public HomeController(ILogService logService, IMapper mapper, INotificationLogsService notificationLogsService, ISiteService siteService)
         {
-            _logger = logger;
+            _logService = logService;
             _mapper = mapper;
             _notificationLogService = notificationLogsService;
             _siteService = siteService;
@@ -34,7 +34,9 @@ namespace DowntimeAlerter.WebApi.Controllers
         public async Task<IActionResult> Index()
         {
             try
-            {
+            {                
+                await _logService.LogInfo("Entered Home Page");
+
                 var sites = await _siteService.GetAllSites();
                 var siteResources = _mapper.Map<IEnumerable<Site>, IEnumerable<SiteDTO>>(sites);
                 var notificationLogs = await _notificationLogService.GetLogs();
@@ -49,7 +51,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                await _logService.LogError(ex.Message);
             }
 
             return View();

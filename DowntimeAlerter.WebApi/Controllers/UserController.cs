@@ -14,24 +14,33 @@ namespace DowntimeAlerter.WebApi.Controllers
 {
     public class UserController : Controller
     {
-        private readonly ILogger<SiteController> _logger;
+        private readonly ILogService _logService;
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
 
-        public UserController(ILogger<SiteController> logger, IMapper mapper, IUserService userService)
+        public UserController(ILogService logService, IMapper mapper, IUserService userService)
         {
-            _logger = logger;
+            _logService = logService;
             _mapper = mapper;
             _userService = userService;
         }
 
-
         public async Task<IActionResult> Index()
         {
-            var allUser = await _userService.GetAllUsers();            
-            var mappedAllUserDTO = _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(allUser);
+            try
+            {
+                await _logService.LogInfo("User page visited : ");
+                var allUser = await _userService.GetAllUsers();
+                var mappedAllUserDTO = _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(allUser);
 
-            return View(mappedAllUserDTO);
+                return View(mappedAllUserDTO);
+            }
+            catch (Exception ex)
+            {
+                await _logService.LogError(ex.Message);
+            }
+
+            return View(new UserDTO());
         }
 
         public ActionResult AddUser()
@@ -62,12 +71,13 @@ namespace DowntimeAlerter.WebApi.Controllers
                 if (existSite != null)
                 {
                     return Json(new { success = false, msg = "The Username as already exist!" });
-                }           
+                }
 
-                var createdSite = await _userService.CreateUser(mappedUser);
-                if (createdSite != null)
+                var createdUser = await _userService.CreateUser(mappedUser);
+                if (createdUser != null)
                 {
-                    return Json(new { success = true, msg = "The user ("+createdSite.UserName+") added." });
+                    await _logService.LogInfo("User added : " + createdUser.UserName);
+                    return Json(new { success = true, msg = "The user (" + createdUser.UserName + ") added." });
                 }
                 else
                 {
@@ -77,11 +87,10 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                await _logService.LogError(ex.Message);
                 return Json(new { success = false, msg = ex.Message });
             }
         }
-
 
         [HttpPost]
         public async Task<ActionResult> DeleteUser(int id)
@@ -89,17 +98,18 @@ namespace DowntimeAlerter.WebApi.Controllers
             try
             {
                 var user = await _userService.GetUserById(id);
-                if (user != null)
+                if (user == null)
                 {
-                    await _userService.DeleteUser(user);
-                    return Json(new { success = false, msg = "The user deleted successfuly" });
+                    return Json(new { success = false, msg = "User was not found !" });
                 }
 
-                return Json(new { success = false, msg = "User was not found !" });
+                await _userService.DeleteUser(user);
+                await _logService.LogInfo("User deleted : " + user.UserName);
+                return Json(new { success = false, msg = "The user deleted successfuly" });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                await _logService.LogError(ex.Message);
                 return Json(new { success = false, msg = ex.Message });
             }
         }

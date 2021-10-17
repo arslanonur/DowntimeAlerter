@@ -21,7 +21,7 @@ namespace DowntimeAlerter.Data
 
         public ISiteRepository Site => _siteRepository ??= new SiteRepository(_context);       
 
-        public ILogsRepository Logs => _logRepository ??= new LogRepository(_context);
+        public ILogRepository Log => _logRepository ??= new LogRepository(_context);
 
         public INotificationLogsRepository NotificationLogs => _notificaitonLogRepository ??= new NotificationLogRepository(_context);
 

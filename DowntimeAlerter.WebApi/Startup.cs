@@ -18,7 +18,7 @@ using DowntimeAlerter.WebApi.ActionFilters;
 namespace DowntimeAlerter.WebApi
 {
     public class Startup
-    {
+    {        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -34,7 +34,7 @@ namespace DowntimeAlerter.WebApi
                     x => x.MigrationsAssembly("DowntimeAlerter.DataAccess")));
 
             services.AddTransient<ISiteService, SiteService>();            
-            services.AddTransient<ILogsService, LogService>();
+            services.AddTransient<ILogService, LogService>();
             services.AddTransient<INotificationLogsService, NotificationLogService>();
             services.AddTransient<IUserService, UserService>();
             services.AddAutoMapper(typeof(Startup));
@@ -79,7 +79,7 @@ namespace DowntimeAlerter.WebApi
                 context.Database.Migrate();
                 context.Database.EnsureCreated();
                 app.UseHangfireDashboard();
-                app.UseHangfireServer();
+                app.UseHangfireServer();                
             }
         }
     }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DowntimeAlerter.Core.Repositories
 {
-    public interface ILogsRepository : IRepository<Logs>
+    public interface ILogRepository : IRepository<Log>
     {
-        Task<IEnumerable<Logs>> GetLogsAsync();
-        Task<Logs> GetLog(int id);
+        Task<IEnumerable<Log>> GetLogsAsync();
+        Task<Log> GetLog(int id);
     }
 }

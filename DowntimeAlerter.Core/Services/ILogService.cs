@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace DowntimeAlerter.Core.Services
 {
-    public interface ILogsService
+    public interface ILogService
     {
-        Task<IEnumerable<Logs>> GetLogs();
-        Task<Logs> GetLog(int id);
+        Task<IEnumerable<Log>> GetLogs();
+        Task<Log> GetLog(int id);
+        Task LogInfo(string message);
+        Task LogError(string exception);
     }
 }

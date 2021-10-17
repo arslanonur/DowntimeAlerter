@@ -5,7 +5,6 @@ using DowntimeAlerter.Core.Services;
 using DowntimeAlerter.Core.Utilities;
 using DowntimeAlerter.WebApi.DTO;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using System;
@@ -23,13 +22,13 @@ namespace DowntimeAlerter.WebApi.Controllers
     public class JobController : Controller
     {
         private readonly HttpClient _httpClient;
-        private readonly ILogger<JobController> _logger;
+        private readonly ILogService _logger;
         private readonly MailSettings _mailSettings;
         private readonly IMapper _mapper;
         private readonly INotificationLogsService _notificaitionLogService;
         private readonly ISiteService _siteService;
 
-        public JobController(ILogger<JobController> logger, ISiteService siteService, IMapper mapper,
+        public JobController(ILogService logger, ISiteService siteService, IMapper mapper,
             IOptions<MailSettings> mailSettings, INotificationLogsService notificaitionLogService)
         {
             _siteService = siteService;
@@ -42,20 +41,27 @@ namespace DowntimeAlerter.WebApi.Controllers
 
         public void StartRecurringNotificationJob()
         {
-            RemoveJob();
-            var sites = _siteService.GetAllSites();
-            var siteResources = _mapper.Map<IEnumerable<Site>, IEnumerable<SiteDTO>>(sites.Result);
-            foreach (var item in siteResources)
-            {                
-                item.CheckedDate = DateTime.Now;
+            try
+            {   
+                RemoveJob();
+                var sites = _siteService.GetAllSites();
+                var siteResources = _mapper.Map<IEnumerable<Site>, IEnumerable<SiteDTO>>(sites.Result);
+                foreach (var item in siteResources)
+                {
+                    item.CheckedDate = DateTime.Now;
+                }
+
+                RecurringJob.AddOrUpdate(() => SendMail(siteResources), Cron.Minutely);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
             }
 
-            RecurringJob.AddOrUpdate(() => SendMail(siteResources), Cron.Minutely);
         }
 
         public void SendMail(IEnumerable<SiteDTO> siteResources)
         {
-            //get all sites
             try
             {
                 foreach (var item in siteResources)
@@ -66,7 +72,8 @@ namespace DowntimeAlerter.WebApi.Controllers
                     try
                     {
                         var userEmails = item.Email;
-                        SendEmailToSiteUsers(userEmails, item);                        
+                        SendEmailToSiteUsers(userEmails, item);
+                        _logger.LogInfo("Mail Sended : " + userEmails + " to " + item.Email);
                     }
                     catch (Exception ex)
                     {
@@ -115,42 +122,63 @@ namespace DowntimeAlerter.WebApi.Controllers
         }
         public void SendEmailToSiteUsers(string userEmail, SiteDTO site)
         {
-
-            var responseMsg = _httpClient.GetAsync(site.Url).GetAwaiter().GetResult();
-            var request = new MailRequest();
-            request.ToEmail = userEmail;
-            request.Subject = "Downtime Alerter";
-            var notificaitionLog = new NotificationLogs();
-            if ((int)responseMsg.StatusCode >= 200 && (int)responseMsg.StatusCode <= 299)
+            try
             {
-                var message = site.Url + " is UP.";
-                notificaitionLog.Message = message;
-                notificaitionLog.SiteName = site.Name;
-                notificaitionLog.State = "Up";
-                notificaitionLog.NotificationType = NotificationType.Email;
-                SaveNotificatonLog(notificaitionLog);
-                request.Body = message;
+                var responseMsg = _httpClient.GetAsync(site.Url).GetAwaiter().GetResult();
+                var request = new MailRequest();
+                request.ToEmail = userEmail;
+                request.Subject = "Downtime Alerter";
+                var notificaitionLog = new NotificationLogs();
+                if (responseMsg != null && (int)responseMsg.StatusCode >= 200 && (int)responseMsg.StatusCode <= 299)
+                {
+                    var message = CreateAndSendNotificationLog("Up", site);
+                    request.Body = message;
+                }
+                else
+                {
+                    var message = CreateAndSendNotificationLog("Down", site);
+                    request.Body = message;
+                    SendEmail(request);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var message = site.Url + " is DOWN.";
-                notificaitionLog.Message = message;
-                notificaitionLog.SiteName = site.Name;
-                notificaitionLog.State = "Down";
-                notificaitionLog.NotificationType = NotificationType.Email;
-                SaveNotificatonLog(notificaitionLog);
-                request.Body = message;
-                SendEmail(request);
+                _logger.LogError(ex.Message);
             }
 
         }
+
+        private string CreateAndSendNotificationLog(string state, SiteDTO site)
+        {
+            var message = site.Url + " is " + state + ".";
+
+            var notificaitionLog = new NotificationLogs();
+            notificaitionLog.Message = message;
+            notificaitionLog.SiteName = site.Name;
+            notificaitionLog.State = state;
+            notificaitionLog.NotificationType = NotificationType.Email;
+            SaveNotificatonLog(notificaitionLog);
+
+            return message;
+        }
+
         public void RemoveJob()
         {
-            using (var connection = JobStorage.Current.GetConnection())
+            try
             {
-                foreach (var recurringJob in connection.GetRecurringJobs())
-                    RecurringJob.RemoveIfExists(recurringJob.Id);
+                using (var connection = JobStorage.Current.GetConnection())
+                {
+                    foreach (var recurringJob in connection.GetRecurringJobs())
+                        RecurringJob.RemoveIfExists(recurringJob.Id);
+
+                    _logger.LogInfo("Removed Jobs");
+                }
             }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
+
         }
         public void SaveNotificatonLog(NotificationLogs notificationLog)
         {

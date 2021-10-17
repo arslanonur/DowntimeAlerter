@@ -2,13 +2,11 @@
 using System.Threading.Tasks;
 using DowntimeAlerter.Core.Models;
 using DowntimeAlerter.Core.Repositories;
-using DowntimeAlerter.DataAccess;
-using DowntimeAlerter.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace DowntimeAlerter.DataAccess.Repositories
 {
-    public class LogRepository : Repository<Logs>, ILogsRepository
+    public class LogRepository : Repository<Log>, ILogRepository
     {
         public LogRepository(DowntimeAlerterDbContext context)
             : base(context)
@@ -16,12 +14,12 @@ namespace DowntimeAlerter.DataAccess.Repositories
 
         private DowntimeAlerterDbContext DowntimeAlerterDbContext => Context as DowntimeAlerterDbContext;
 
-        public async Task<IEnumerable<Logs>> GetLogsAsync()
+        public async Task<IEnumerable<Log>> GetLogsAsync()
         {
             return await DowntimeAlerterDbContext.Logs.ToListAsync();
         }
 
-        public async Task<Logs> GetLog(int id)
+        public async Task<Log> GetLog(int id)
         {
             return await DowntimeAlerterDbContext.Logs
                 .SingleOrDefaultAsync(m => m.Id == id);

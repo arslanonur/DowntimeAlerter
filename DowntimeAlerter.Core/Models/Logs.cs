@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DowntimeAlerter.Core.Models
 {
-    public class Logs
+    public class Log
     {
         public int Id { get; set; }
         public string Level { get; set; }

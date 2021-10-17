@@ -2,7 +2,7 @@
 
 namespace DowntimeAlerter.WebApi.DTO
 {
-    public class LogsDTO
+    public class LogDTO
     {
         public int Id { get; set; }
         public string Message { get; set; }

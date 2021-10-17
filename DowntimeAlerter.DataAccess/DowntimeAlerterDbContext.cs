@@ -13,16 +13,16 @@ namespace DowntimeAlerter.DataAccess
         {
         }
         public DbSet<Site> Sites { get; set; }
-        public DbSet<Logs> Logs { get; set; }
+        public DbSet<Log> Logs { get; set; }
         public DbSet<NotificationLogs> NotificationLogs { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.Entity<Logs>().ToTable(nameof(Logs));
+            builder.Entity<Log>().ToTable(nameof(Logs), t => t.ExcludeFromMigrations());
 
-            builder
-                .ApplyConfiguration(new LogsConfiguration());
+            //builder
+            //    .ApplyConfiguration(new LogsConfiguration());
 
             builder
                 .ApplyConfiguration(new SiteConfiguration());

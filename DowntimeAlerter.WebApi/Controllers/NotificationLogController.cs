@@ -8,35 +8,44 @@ using DowntimeAlerter.Core.Services;
 using DowntimeAlerter.WebApi.ActionFilters;
 using DowntimeAlerter.WebApi.DTO;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace DowntimeAlerter.WebApi.Controllers
 {
     [ServiceFilter(typeof(LoginFilterAttribute))]
     public class NotificationLogController : Controller
     {
-        private readonly ILogger<NotificationLogController> _logger;
+        private readonly ILogService _logService;
         private readonly IMapper _mapper;
         private readonly INotificationLogsService _notificaitonLogService;
 
 
-        public NotificationLogController(ILogger<NotificationLogController> logger,
+        public NotificationLogController(ILogService logService,
             INotificationLogsService notificaitionLogService, IMapper mapper)
         {
             _notificaitonLogService = notificaitionLogService;
-            _logger = logger;
+            _logService = logService;
             _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
         {
-            var allNotificationLogs = await _notificaitonLogService.GetLogs();
-            var mappedNotificationLogs = _mapper.Map<IEnumerable<NotificationLogs>, IEnumerable<NotificationLogDTO>>(allNotificationLogs);
-            return View(mappedNotificationLogs.OrderByDescending(x=>x.Id));
+            try
+            {
+                var allNotificationLogs = await _notificaitonLogService.GetLogs();
+                var mappedNotificationLogs = _mapper.Map<IEnumerable<NotificationLogs>, IEnumerable<NotificationLogDTO>>(allNotificationLogs);
+                await _logService.LogInfo("NotificationLog page visited");
+                return View(mappedNotificationLogs.OrderByDescending(x => x.Id));
+            }
+            catch (Exception ex)
+            {
+                await _logService.LogError(ex.Message);                
+            }
+
+            return View(new NotificationLogDTO());            
         }
 
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<LogsDTO>>> GetAllLogs()
+        public async Task<ActionResult<IEnumerable<LogDTO>>> GetAllLogs()
         {
             try
             {
@@ -47,7 +56,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                await _logService.LogError(ex.Message);
                 return Json(new { data = false });
             }
         }

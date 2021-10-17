@@ -16,7 +16,7 @@ namespace DowntimeAlerter.Test
             var mapper = config.CreateMapper();
 
             //arrange act
-            var log = new Logs();
+            var log = new Log();
             log.Id = 1;
             log.Level = "Up";
             log.Message = "Message";
@@ -25,7 +25,7 @@ namespace DowntimeAlerter.Test
             log.Exception = "Exception";
 
             //assert
-            var logDTO = mapper.Map<Logs, LogsDTO>(log);
+            var logDTO = mapper.Map<Log, LogDTO>(log);
             Assert.Equal(logDTO.Id, log.Id);
             Assert.Equal(logDTO.Level, log.Level);
             Assert.Equal(logDTO.MessageTemplate, log.MessageTemplate);

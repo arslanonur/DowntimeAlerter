@@ -1,7 +1,10 @@
+using DowntimeAlerter.Core.Models;
+using DowntimeAlerter.Core.Services;
+using DowntimeAlerter.WebApi.Controllers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Serilog;
+
 using System;
 
 namespace DowntimeAlerter.WebApi
@@ -12,22 +15,18 @@ namespace DowntimeAlerter.WebApi
         {
             CreateHostBuilder(args).Build().Run();
 
-            Log.Logger = new LoggerConfiguration()
-                .Enrich.FromLogContext()
-                .WriteTo.Console()
-                .CreateLogger();
             try
-            {
-                Log.Information("Starting up");
+            {                
+                //Log.Information("Starting up");
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "Application start-up failed");
+                //Log.Fatal(ex, "Application start-up failed");
             }
             finally
             {
-                Log.CloseAndFlush();
+                //Log.CloseAndFlush();
             }
         }
 
@@ -35,15 +34,10 @@ namespace DowntimeAlerter.WebApi
         {
             var configSettings = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
-                .Build();
-
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(configSettings)
-                .CreateLogger();
+                .Build();            
 
             return Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration(config => { config.AddConfiguration(configSettings); })
-                .UseSerilog()
+                .ConfigureAppConfiguration(config => { config.AddConfiguration(configSettings); })                
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
         }
     }

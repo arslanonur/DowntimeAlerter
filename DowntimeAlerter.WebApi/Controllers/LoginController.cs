@@ -16,15 +16,15 @@ namespace DowntimeAlerter.WebApi.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly ILogger<LoginController> _logger;
+        private readonly ILogService _logService;
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
 
-        public LoginController(ILogger<LoginController> logger, IUserService userService, IMapper mapper)
+        public LoginController(ILogService logger, IUserService userService, IMapper mapper)
         {
             _mapper = mapper;
             _userService = userService;
-            _logger = logger;
+            _logService = logger;
         }
 
         public IActionResult Login()
@@ -37,18 +37,20 @@ namespace DowntimeAlerter.WebApi.Controllers
         {
             if (model.Username == string.Empty || model.Password == string.Empty)
                 return Json(new { success = true, msg = "Please enter username and password.!" });
-            var user = _mapper.Map<UserDTO, User>(model);
+
             try
             {
+                var user = _mapper.Map<UserDTO, User>(model);
                 var md5Password = SecurePasswordHasher.CalculateMD5Hash(model.Password);
                 user.Password = md5Password;
                 var returnUser = await _userService.GetUserAsync(user);
                 if (returnUser != null)
                 {
-                    ViewBag["UserInfo"] = returnUser.Type;
+                    //ViewBag["UserInfo"] = returnUser.Type;
                     var option = new CookieOptions();
                     option.Expires = DateTime.Now.AddMinutes(60);
                     Response.Cookies.Append(ProjectConstants.CookieName, returnUser.Id.ToString(), option);
+                    _logService.LogInfo("Login Success from " + returnUser.UserName);
                     return Json(new { success = true, msg = string.Empty });
                 }
 
@@ -56,12 +58,12 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logService.LogError(ex.Message);
                 return Json(new { success = false, msg = "An error was occured" });
             }
 
 
-            return Json(new { success = true, msg = "model is not valid." });
+            return Json(new { success = true, msg = "User input is not valid." });
         }
 
         [HttpGet]
@@ -70,7 +72,6 @@ namespace DowntimeAlerter.WebApi.Controllers
             try
             {
                 Response.Cookies.Delete(ProjectConstants.CookieName);
-                //remove hangfire job
                 using (var connection = JobStorage.Current.GetConnection())
                 {
                     foreach (var recurringJob in connection.GetRecurringJobs())
@@ -79,7 +80,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logService.LogError(ex.Message);
             }
 
             return RedirectToAction("Login");

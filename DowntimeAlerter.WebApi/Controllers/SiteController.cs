@@ -16,27 +16,36 @@ namespace DowntimeAlerter.WebApi.Controllers
     [ServiceFilter(typeof(LoginFilterAttribute))]
     public class SiteController : Controller
     {
-        private readonly ILogger<SiteController> _logger;
+        private readonly ILogService _logService;
         private readonly IMapper _mapper;
         private readonly ISiteService _siteService;
 
-        public SiteController(ILogger<SiteController> logger,IMapper mapper, ISiteService siteService)
+        public SiteController(ILogService logService, IMapper mapper, ISiteService siteService)
         {
-            _logger = logger;
+            _logService = logService;
             _mapper = mapper;
-            _siteService = siteService;            
+            _siteService = siteService;
         }
         public async Task<IActionResult> Index()
         {
-            var allSites = await _siteService.GetAllSites();
-            var allSitesDTO = new List<SiteDTO>();
-            foreach (var site in allSites)
+            try
             {
-                var mappedSiteDTO = _mapper.Map<Site, SiteDTO>(site);
-                allSitesDTO.Add(mappedSiteDTO);
+                await _logService.LogInfo("Site page visited.");
+                var allSites = await _siteService.GetAllSites();
+                var allSitesDTO = new List<SiteDTO>();
+                foreach (var site in allSites)
+                {
+                    var mappedSiteDTO = _mapper.Map<Site, SiteDTO>(site);
+                    allSitesDTO.Add(mappedSiteDTO);
+                }
+                return View(allSitesDTO);
+            }
+            catch (Exception ex)
+            {
+                await _logService.LogError(ex.Message);
             }
 
-            return View(allSitesDTO);
+            return View(new List<SiteDTO>());
         }
 
         public ActionResult AddSite()
@@ -48,29 +57,28 @@ namespace DowntimeAlerter.WebApi.Controllers
         public async Task<ActionResult> CreateSite(SiteDTO site)
         {
             try
-            {
+            {                
                 var validator = new SaveSiteResourceValidator();
                 var validationResult = await validator.ValidateAsync(site);
                 if (!validationResult.IsValid)
                 {
                     return BadRequest(validationResult.Errors);
                 }
-                    
+
                 if (!UrlChecker.CheckUrl(site.Url))
                 {
-                    _logger.LogError("test logger");
                     return Json(new { success = false, msg = "Incorrect Url format." });
-                }                    
+                }
 
-                if (site.IntervalTime <60)
+                if (site.IntervalTime < 60)
                 {
                     return Json(new { success = false, msg = "The Interval Time must be greater or equal 60 seconds." });
-                }                    
+                }
 
                 var mappedSite = _mapper.Map<SiteDTO, Site>(site);
 
                 var existSite = await _siteService.GetSiteByUrl(site.Url);
-                if (existSite!= null)
+                if (existSite != null)
                 {
                     return Json(new { success = false, msg = "The Url as already exist!" });
                 }
@@ -80,7 +88,8 @@ namespace DowntimeAlerter.WebApi.Controllers
 
                 var createdSite = await _siteService.CreateSite(mappedSite);
                 if (createdSite != null)
-                {   
+                {
+                    await _logService.LogInfo("New site added. Added site name : " + createdSite.Name);
                     return Json(new { success = true, msg = "The site added." });
                 }
                 else
@@ -91,7 +100,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                await _logService.LogError(ex.Message);
                 return Json(new { success = false, msg = ex.Message });
             }
         }
@@ -106,10 +115,9 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                await _logService.LogError(ex.Message);
                 return View(new SiteDTO());
             }
-            
         }
 
         [HttpPut]
@@ -117,7 +125,7 @@ namespace DowntimeAlerter.WebApi.Controllers
         {
             try
             {
-                if(siteDTO.Id <= 0)
+                if (siteDTO.Id <= 0)
                     return Json(new { success = true, msg = "Please select a site!" });
 
                 if (!UrlChecker.CheckUrl(siteDTO.Url))
@@ -129,23 +137,22 @@ namespace DowntimeAlerter.WebApi.Controllers
                 var siteToBeUpdated = await _siteService.GetSiteById(siteDTO.Id);
                 if (siteToBeUpdated == null)
                     return Json(new { success = false, msg = "Site was not found!" });
-                
+
                 if (siteToBeUpdated != null)
                 {
                     var mappedSite = _mapper.Map<SiteDTO, Site>(siteDTO);
                     await _siteService.UpdateSite(siteToBeUpdated, mappedSite);
+                    await _logService.LogInfo("Site updated. Updated site name : " + mappedSite.Name);
                     return Json(new { success = false, msg = "The site updated successfuly" });
                 }
                 else
-                {                    
+                {
                     return Json(new { success = false, msg = "Site was not found !" });
                 }
-
-
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                await _logService.LogError(ex.Message);
                 return Json(new { success = false, msg = ex.Message });
             }
         }
@@ -166,7 +173,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                await _logService.LogError(ex.Message);
                 return Json(new { success = false, msg = ex.Message });
             }
         }
