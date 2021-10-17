@@ -3,8 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using DowntimeAlerter.Core.Models;
 using DowntimeAlerter.Core.Repositories;
-using DowntimeAlerter.DataAccess;
-using DowntimeAlerter.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace DowntimeAlerter.DataAccess.Repositories

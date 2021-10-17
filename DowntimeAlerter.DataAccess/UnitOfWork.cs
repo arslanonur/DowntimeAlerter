@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using DowntimeAlerter.Core;
 using DowntimeAlerter.Core.Repositories;
-using DowntimeAlerter.DataAccess.Repositories;
 using DowntimeAlerter.DataAccess;
+using DowntimeAlerter.DataAccess.Repositories;
 
 namespace DowntimeAlerter.Data
 {
@@ -19,11 +19,12 @@ namespace DowntimeAlerter.Data
             _context = context;
         }
 
-        public ISiteRepository Site => _siteRepository ??= new SiteRepository(_context);       
+        public ISiteRepository Site => _siteRepository ??= new SiteRepository(_context);
 
         public ILogRepository Log => _logRepository ??= new LogRepository(_context);
 
-        public INotificationLogsRepository NotificationLogs => _notificaitonLogRepository ??= new NotificationLogRepository(_context);
+        public INotificationLogsRepository NotificationLogs =>
+            _notificaitonLogRepository ??= new NotificationLogRepository(_context);
 
         public IUserRepository Users => _userRepository ??= new UserRepository(_context);
 

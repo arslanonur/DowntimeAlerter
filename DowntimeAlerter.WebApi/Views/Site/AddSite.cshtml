@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-header" style="text-align:center">
+            <div class="card-header" style="text-align: center">
                 <h5>Add Site</h5>
             </div>
             <div class="card-body">
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="float:right">
+                    <div class="row" style="float: right">
                         <button type="button" id="addSiteSubmitBtn" class="btn btn-primary mb-2">Add Sites</button>
                     </div>
 
@@ -50,66 +50,64 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-        $('#addSiteSubmitBtn').on('click', function () {
-            
-            if (!$("#frmAddSite")[0].checkValidity()) {
-                if (!$('#txtName')[0].checkValidity()) {
-                    bootbox.alert("Fill Name area");
-                }
-                else if (!$('#txtUrl')[0].checkValidity()) {
-                    bootbox.alert("Fill Url area like url format");
-                }
-                else if (!isUrlValid($('#txtUrl').val())) {
-                    bootbox.alert("Fill Url area like url format [http(s)://.. etc.]");
-                }
-                else if (!$('#nbrIntervalTime')[0].checkValidity()) {
-                    bootbox.alert("Fill Interval Time area");
-                }
-                else if (!$('#inputEmail')[0].checkValidity()) {
-                    bootbox.alert("Fill Email area like email format");
-                }
-                return;
-            }
+    $(document).ready(function() {
+        $('#addSiteSubmitBtn').on('click',
+            function() {
 
-            var formData = {
-                Name: $('#txtName').val(),
-                Url: $('#txtUrl').val(),
-                IntervalTime: $('#nbrIntervalTime').val(),
-                Email: $('#inputEmail').val(),
-            }
-
-            $.ajax({
-                url: '@Url.Action("CreateSite")',
-                type: 'POST',
-                async: true,
-                data: formData,
-                dataType: "json",
-                success: function (response) {
-                    StartRecurringNotificationJob();
-                    bootbox.alert(response.msg, function(e) {
-                        window.location.href = "/Site/Index";
-                    });
-                },
-                error: function (ex) {
-                    bootbox.alert("Unexpected Error");
+                if (!$("#frmAddSite")[0].checkValidity()) {
+                    if (!$('#txtName')[0].checkValidity()) {
+                        bootbox.alert("Fill Name area");
+                    } else if (!$('#txtUrl')[0].checkValidity()) {
+                        bootbox.alert("Fill Url area like url format");
+                    } else if (!isUrlValid($('#txtUrl').val())) {
+                        bootbox.alert("Fill Url area like url format [http(s)://.. etc.]");
+                    } else if (!$('#nbrIntervalTime')[0].checkValidity()) {
+                        bootbox.alert("Fill Interval Time area");
+                    } else if (!$('#inputEmail')[0].checkValidity()) {
+                        bootbox.alert("Fill Email area like email format");
+                    }
+                    return;
                 }
+
+                var formData = {
+                    Name: $('#txtName').val(),
+                    Url: $('#txtUrl').val(),
+                    IntervalTime: $('#nbrIntervalTime').val(),
+                    Email: $('#inputEmail').val(),
+                };
+
+                $.ajax({
+                    url: '@Url.Action("CreateSite")',
+                    type: 'POST',
+                    async: true,
+                    data: formData,
+                    dataType: "json",
+                    success: function(response) {
+                        StartRecurringNotificationJob();
+                        bootbox.alert(response.msg,
+                            function(e) {
+                                window.location.href = "/Site/Index";
+                            });
+                    },
+                    error: function(ex) {
+                        bootbox.alert("Unexpected Error");
+                    }
+                });
             });
-        })
 
         function StartRecurringNotificationJob() {
             $.ajax({
-                url: '@Url.Action("StartRecurringNotificationJob","Job")',
+                url: '@Url.Action("StartRecurringNotificationJob", "Job")',
                 type: 'GET',
                 async: true,
                 dataType: "json",
-                success: function (response) {
+                success: function(response) {
 
                 },
-                error: function (ex) {
+                error: function(ex) {
 
                 }
             });
         }
-    })    
+    })
 </script>

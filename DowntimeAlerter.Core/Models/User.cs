@@ -1,6 +1,4 @@
-﻿using DowntimeAlerter.Core.Enums;
-
-namespace DowntimeAlerter.Core.Models
+﻿namespace DowntimeAlerter.Core.Models
 {
     public class User
     {
@@ -9,6 +7,5 @@ namespace DowntimeAlerter.Core.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public int Type { get; set; }
-
     }
 }

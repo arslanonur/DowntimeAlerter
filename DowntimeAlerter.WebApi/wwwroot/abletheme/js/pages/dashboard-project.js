@@ -1,8 +1,9 @@
-'use strict';
+"use strict";
 $(document).ready(function() {
     setTimeout(function() {
-        floatchart()
-    }, 100);
+            floatchart();
+        },
+        100);
 });
 
 function floatchart() {
@@ -10,7 +11,7 @@ function floatchart() {
     $(function() {
         var options = {
             chart: {
-                type: 'area',
+                type: "area",
                 height: 50,
                 sparkline: {
                     enabled: true
@@ -21,7 +22,7 @@ function floatchart() {
             },
             colors: ["#fff"],
             fill: {
-                type: 'solid',
+                type: "solid",
                 opacity: 0,
             },
             markers: {
@@ -35,13 +36,15 @@ function floatchart() {
                 }
             },
             stroke: {
-                curve: 'straight',
+                curve: "straight",
                 width: 3,
             },
-            series: [{
-                name: 'series1',
-                data: [25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 25, 66, 41, 89, 63, 54, 25, 66, 41, 89, 63]
-            }],
+            series: [
+                {
+                    name: "series1",
+                    data: [25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 25, 66, 41, 89, 63, 54, 25, 66, 41, 89, 63]
+                }
+            ],
             tooltip: {
                 fixed: {
                     enabled: false
@@ -52,7 +55,7 @@ function floatchart() {
                 y: {
                     title: {
                         formatter: function(seriesName) {
-                            return 'Referral :'
+                            return "Referral :";
                         }
                     }
                 },
@@ -69,7 +72,7 @@ function floatchart() {
     $(function() {
         var options = {
             chart: {
-                type: 'bar',
+                type: "bar",
                 height: 80,
                 sparkline: {
                     enabled: true
@@ -81,12 +84,14 @@ function floatchart() {
             colors: ["#548b2e"],
             plotOptions: {
                 bar: {
-                    columnWidth: '60%'
+                    columnWidth: "60%"
                 }
             },
-            series: [{
-                data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 63, 54, 25, 66, 41, 89]
-            }],
+            series: [
+                {
+                    data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 63, 54, 25, 66, 41, 89]
+                }
+            ],
             xaxis: {
                 crosshairs: {
                     width: 1
@@ -102,7 +107,7 @@ function floatchart() {
                 y: {
                     title: {
                         formatter: function(seriesName) {
-                            return 'Affiliate :'
+                            return "Affiliate :";
                         }
                     }
                 },
@@ -119,7 +124,7 @@ function floatchart() {
     $(function() {
         var options = {
             chart: {
-                type: 'area',
+                type: "area",
                 height: 50,
                 sparkline: {
                     enabled: true
@@ -130,7 +135,7 @@ function floatchart() {
             },
             colors: ["#fff"],
             fill: {
-                type: 'solid',
+                type: "solid",
                 opacity: 0,
             },
             markers: {
@@ -144,13 +149,15 @@ function floatchart() {
                 }
             },
             stroke: {
-                curve: 'straight',
+                curve: "straight",
                 width: 3,
             },
-            series: [{
-                name: 'series1',
-                data: [25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 25, 66, 41, 89, 63, 54, 25, 66, 41, 89, 63]
-            }],
+            series: [
+                {
+                    name: "series1",
+                    data: [25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 25, 66, 41, 89, 63, 54, 25, 66, 41, 89, 63]
+                }
+            ],
             tooltip: {
                 fixed: {
                     enabled: false
@@ -161,7 +168,7 @@ function floatchart() {
                 y: {
                     title: {
                         formatter: function(seriesName) {
-                            return 'Referral :'
+                            return "Referral :";
                         }
                     }
                 },
@@ -178,7 +185,7 @@ function floatchart() {
     $(function() {
         var options = {
             chart: {
-                type: 'bar',
+                type: "bar",
                 height: 80,
                 sparkline: {
                     enabled: true
@@ -190,12 +197,14 @@ function floatchart() {
             colors: ["#0491a2"],
             plotOptions: {
                 bar: {
-                    columnWidth: '60%'
+                    columnWidth: "60%"
                 }
             },
-            series: [{
-                data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 63, 54, 25, 66, 41, 89]
-            }],
+            series: [
+                {
+                    data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 63, 54, 25, 66, 41, 89]
+                }
+            ],
             xaxis: {
                 crosshairs: {
                     width: 1
@@ -211,7 +220,7 @@ function floatchart() {
                 y: {
                     title: {
                         formatter: function(seriesName) {
-                            return 'Affiliate :'
+                            return "Affiliate :";
                         }
                     }
                 },

@@ -9,16 +9,16 @@ namespace DowntimeAlerter.WebApi.Mapping
         public MappingProfile()
         {
             // Domain to Resource            
-            CreateMap<Site, SiteDTO>();            
+            CreateMap<Site, SiteDTO>();
             CreateMap<Log, LogDTO>();
             CreateMap<NotificationLogs, NotificationLogDTO>();
             CreateMap<User, UserDTO>();
 
             // Resource to Domain            
-            CreateMap<SiteDTO, Site>();            
+            CreateMap<SiteDTO, Site>();
             CreateMap<LogDTO, Log>();
-            CreateMap<NotificationLogDTO, NotificationLogs>();            
-            CreateMap<UserDTO, User>();            
+            CreateMap<NotificationLogDTO, NotificationLogs>();
+            CreateMap<UserDTO, User>();
         }
     }
 }

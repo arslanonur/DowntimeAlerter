@@ -8,43 +8,43 @@
         <div class="table-responsive" id="dataTable">
             <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>State</th>
-                        <th>Site Name</th>
-                        <th>NotificationType</th>
-                        <th>Message</th>
-                        <th>Checked Date</th>
-                    </tr>
+                <tr>
+                    <th>#</th>
+                    <th>State</th>
+                    <th>Site Name</th>
+                    <th>NotificationType</th>
+                    <th>Message</th>
+                    <th>Checked Date</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @{int rowNum = 0;}
-                    @foreach (var item in Model)
+                @{ var rowNum = 0; }
+                @foreach (var item in Model)
+                {
+                    rowNum++;
+                    @if (item.State == "Down")
                     {
-                        rowNum++;
-                        @if (item.State == "Down")
-                        {
-                            <tr class="">
-                                <td>@rowNum</td>
-                                <td style="background: #ffa5a5;">@item.State</td>
-                                <td>@item.SiteName</td>
-                                <td>@item.NotificationType</td>
-                                <td>@item.Message</td>
-                                <td>@item.CheckedDate.ToString()</td>
-                            </tr>
-                        }
-                        else
-                        {
-                            <tr class="">
-                                <td>@rowNum</td>
-                                <td style="background: #cce4af;">@item.State</td>
-                                <td>@item.SiteName</td>
-                                <td>@item.NotificationType</td>
-                                <td>@item.Message</td>
-                                <td>@item.CheckedDate.ToString()</td>
-                            </tr>
-                        }
+                        <tr class="">
+                            <td>@rowNum</td>
+                            <td style="background: #ffa5a5;">@item.State</td>
+                            <td>@item.SiteName</td>
+                            <td>@item.NotificationType</td>
+                            <td>@item.Message</td>
+                            <td>@item.CheckedDate.ToString()</td>
+                        </tr>
                     }
+                    else
+                    {
+                        <tr class="">
+                            <td>@rowNum</td>
+                            <td style="background: #cce4af;">@item.State</td>
+                            <td>@item.SiteName</td>
+                            <td>@item.NotificationType</td>
+                            <td>@item.Message</td>
+                            <td>@item.CheckedDate.ToString()</td>
+                        </tr>
+                    }
+                }
                 </tbody>
             </table>
         </div>

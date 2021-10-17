@@ -32,16 +32,17 @@ namespace DowntimeAlerter.WebApi.Controllers
             try
             {
                 var allNotificationLogs = await _notificaitonLogService.GetLogs();
-                var mappedNotificationLogs = _mapper.Map<IEnumerable<NotificationLogs>, IEnumerable<NotificationLogDTO>>(allNotificationLogs);
+                var mappedNotificationLogs =
+                    _mapper.Map<IEnumerable<NotificationLogs>, IEnumerable<NotificationLogDTO>>(allNotificationLogs);
                 await _logService.LogInfo("NotificationLog page visited");
                 return View(mappedNotificationLogs.OrderByDescending(x => x.Id));
             }
             catch (Exception ex)
             {
-                await _logService.LogError(ex.Message, ex.InnerException.Message);                
+                await _logService.LogError(ex.Message, ex.InnerException.Message);
             }
 
-            return View(new NotificationLogDTO());            
+            return View(new NotificationLogDTO());
         }
 
         [HttpPost]
@@ -52,12 +53,12 @@ namespace DowntimeAlerter.WebApi.Controllers
                 var logs = await _notificaitonLogService.GetLogs();
                 var logsDto = _mapper.Map<IEnumerable<NotificationLogs>, IEnumerable<NotificationLogDTO>>(logs)
                     .OrderByDescending(o => o.CheckedDate);
-                return Json(new { data = logsDto });
+                return Json(new {data = logsDto});
             }
             catch (Exception ex)
             {
                 await _logService.LogError(ex.Message, ex.InnerException.Message);
-                return Json(new { data = false });
+                return Json(new {data = false});
             }
         }
     }

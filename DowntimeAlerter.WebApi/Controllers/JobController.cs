@@ -1,21 +1,21 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using AutoMapper;
 using DowntimeAlerter.Core.Enums;
 using DowntimeAlerter.Core.Models;
 using DowntimeAlerter.Core.Services;
 using DowntimeAlerter.Core.Utilities;
+using DowntimeAlerter.WebApi.ActionFilters;
 using DowntimeAlerter.WebApi.DTO;
+using Hangfire;
+using Hangfire.Storage;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using System;
-using System.Collections.Generic;
-using MailKit.Net.Smtp;
-using MailKit.Security;
-using System.Net.Http;
-using Hangfire;
-using Hangfire.Storage;
-using DowntimeAlerter.WebApi.ActionFilters;
-using System.Threading.Tasks;
 
 namespace DowntimeAlerter.WebApi.Controllers
 {
@@ -43,22 +43,18 @@ namespace DowntimeAlerter.WebApi.Controllers
         public async Task StartRecurringNotificationJobAsync()
         {
             try
-            {   
+            {
                 RemoveJob();
                 var sites = _siteService.GetAllSites();
                 var siteResources = _mapper.Map<IEnumerable<Site>, IEnumerable<SiteDTO>>(sites.Result);
-                foreach (var item in siteResources)
-                {
-                    item.CheckedDate = DateTime.Now;
-                }
+                foreach (var item in siteResources) item.CheckedDate = DateTime.Now;
 
                 RecurringJob.AddOrUpdate(() => SendMail(siteResources), Cron.Minutely);
             }
             catch (Exception ex)
             {
-                await _logService.LogError(ex.Message,ex.InnerException.Message);
+                await _logService.LogError(ex.Message, ex.InnerException.Message);
             }
-
         }
 
         public void SendMail(IEnumerable<SiteDTO> siteResources)
@@ -73,7 +69,7 @@ namespace DowntimeAlerter.WebApi.Controllers
                     try
                     {
                         var userEmails = item.Email;
-                        SendEmailToSiteUsers(userEmails, item);                        
+                        SendEmailToSiteUsers(userEmails, item);
                     }
                     catch (Exception ex)
                     {
@@ -85,8 +81,8 @@ namespace DowntimeAlerter.WebApi.Controllers
                         notificaitionLog.NotificationType = NotificationType.Email;
                         SaveNotificatonLog(notificaitionLog);
                         _logService.LogError("An error occured for " + item.Name +
-                                         " while checking health of it. ",
-                                         ex.Message);
+                                             " while checking health of it. ",
+                            ex.Message);
                     }
 
                     item.CheckedDate = DateTime.Now;
@@ -97,6 +93,7 @@ namespace DowntimeAlerter.WebApi.Controllers
                 _logService.LogError(ex.Message, ex.InnerException.Message);
             }
         }
+
         public void SendEmail(MailRequest mailRequest)
         {
             try
@@ -120,6 +117,7 @@ namespace DowntimeAlerter.WebApi.Controllers
                 _logService.LogError(ex.Message, ex.InnerException.Message);
             }
         }
+
         public void SendEmailToSiteUsers(string userEmail, SiteDTO site)
         {
             try
@@ -129,7 +127,7 @@ namespace DowntimeAlerter.WebApi.Controllers
                 request.ToEmail = userEmail;
                 request.Subject = "Downtime Alerter";
                 var notificaitionLog = new NotificationLogs();
-                if (responseMsg != null && (int)responseMsg.StatusCode >= 200 && (int)responseMsg.StatusCode <= 299)
+                if (responseMsg != null && (int) responseMsg.StatusCode >= 200 && (int) responseMsg.StatusCode <= 299)
                 {
                     var message = CreateAndSendNotificationLog("Up", site);
                     request.Body = message;
@@ -145,7 +143,6 @@ namespace DowntimeAlerter.WebApi.Controllers
             {
                 _logService.LogError(ex.Message, ex.InnerException.Message);
             }
-
         }
 
         private string CreateAndSendNotificationLog(string state, SiteDTO site)
@@ -176,8 +173,8 @@ namespace DowntimeAlerter.WebApi.Controllers
             {
                 _logService.LogError(ex.Message, ex.InnerException.Message);
             }
-
         }
+
         public void SaveNotificatonLog(NotificationLogs notificationLog)
         {
             try
@@ -190,6 +187,5 @@ namespace DowntimeAlerter.WebApi.Controllers
                 _logService.LogError(ex.Message, ex.InnerException.Message);
             }
         }
-
     }
 }

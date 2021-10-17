@@ -7,6 +7,5 @@ namespace DowntimeAlerter.Core.Repositories
     {
         Task<User> GetUserAsync(User user);
         Task<User> GetUserByUserName(User user);
-
     }
 }

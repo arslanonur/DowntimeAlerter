@@ -58,20 +58,20 @@
 <script>
     $(document).ready(function() {
         StartRecurringNotificationJob();
-    })
+    });
 
     function StartRecurringNotificationJob() {
-            $.ajax({
-                url: '@Url.Action("StartRecurringNotificationJob","Job")',
-                type: 'GET',
-                async: true,
-                dataType: "json",
-                success: function (response) {
+        $.ajax({
+            url: '@Url.Action("StartRecurringNotificationJob", "Job")',
+            type: 'GET',
+            async: true,
+            dataType: "json",
+            success: function(response) {
 
-                },
-                error: function (ex) {
+            },
+            error: function(ex) {
 
-                }
-            });
-        }
+            }
+        });
+    }
 </script>

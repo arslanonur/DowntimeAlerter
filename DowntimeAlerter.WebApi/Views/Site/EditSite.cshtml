@@ -1,10 +1,10 @@
 ﻿@model DowntimeAlerter.WebApi.DTO.SiteDTO
 
-<input type="hidden" id="siteId" value="@Model.Id" />
+<input type="hidden" id="siteId" value="@Model.Id"/>
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-header" style="text-align:center">
+            <div class="card-header" style="text-align: center">
                 <h5>Edit Site</h5>
             </div>
             <div class="card-body">
@@ -17,7 +17,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">                        
+                    <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label class="floating-label" for="txtUrl">Url</label>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="float:right">
+                    <div class="row" style="float: right">
                         <button type="button" id="addSiteSubmitBtn" class="btn btn-warning mb-2">Update Site</button>
                     </div>
 
@@ -52,48 +52,49 @@
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#addSiteSubmitBtn').on('click', function () {
+    $(document).ready(function() {
+        $('#addSiteSubmitBtn').on('click',
+            function() {
 
-            if (!$("#frmAddSite")[0].checkValidity()) {
-                return;
-            }
-
-            var formData = {
-                Id: $('#siteId').val(),
-                Name: $('#txtName').val(),
-                Url: $('#txtUrl').val(),
-                IntervalTime: $('#nbrIntervalTime').val(),
-                Email: $('#inputEmail').val(),
-            }
-
-            $.ajax({
-                url: '@Url.Action("UpdateSite")',
-                type: 'PUT',
-                async: true,
-                data: formData,
-                dataType: "json",
-                success: function (response) {
-                    StartRecurringNotificationJob();
-                    bootbox.alert(response.msg);
-                },
-                error: function () {
-                    bootbox.alert("Unexpected Error");
+                if (!$("#frmAddSite")[0].checkValidity()) {
+                    return;
                 }
-            });
 
-        })
+                var formData = {
+                    Id: $('#siteId').val(),
+                    Name: $('#txtName').val(),
+                    Url: $('#txtUrl').val(),
+                    IntervalTime: $('#nbrIntervalTime').val(),
+                    Email: $('#inputEmail').val(),
+                };
+
+                $.ajax({
+                    url: '@Url.Action("UpdateSite")',
+                    type: 'PUT',
+                    async: true,
+                    data: formData,
+                    dataType: "json",
+                    success: function(response) {
+                        StartRecurringNotificationJob();
+                        bootbox.alert(response.msg);
+                    },
+                    error: function() {
+                        bootbox.alert("Unexpected Error");
+                    }
+                });
+
+            });
 
         function StartRecurringNotificationJob() {
             $.ajax({
-                url: '@Url.Action("StartRecurringNotificationJob","Job")',
+                url: '@Url.Action("StartRecurringNotificationJob", "Job")',
                 type: 'GET',
                 async: true,
                 dataType: "json",
-                success: function (response) {
+                success: function(response) {
 
                 },
-                error: function (ex) {
+                error: function(ex) {
 
                 }
             });

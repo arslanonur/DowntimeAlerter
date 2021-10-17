@@ -11,31 +11,38 @@
         <div class="table-responsive" id="dataTable">
             <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Url</th>
-                        <th>Interval Time</th>
-                        <th>Email</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Url</th>
+                    <th>Interval Time</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @{int rowNum = 0;}
-                    @foreach (var item in Model)
-                    {
-                        rowNum++;
-                        <tr>
-                            <td>@rowNum</td>
-                            <td>@item.Name</td>
-                            <td>@item.Url</td>
-                            <td>@item.IntervalTime</td>
-                            <td>@item.Email</td>
-                            <td><button type="button" onclick='location.href="@Url.Action("EditSite", "Site", new { id=item.Id})"' class="btn  btn-icon btn-outline-success" style="width: 30px; height: 30px;"><i class="feather icon-check-circle"></i></button></td>
-                            <td><button type="button" onclick='deleteSite(@item.Id)' class="btn  btn-icon btn-outline-danger" style="width: 30px; height: 30px;"><i class="feather icon-slash"></i></button>
-                        </tr>
-                    }
+                @{ var rowNum = 0; }
+                @foreach (var item in Model)
+                {
+                    rowNum++;
+                    <tr>
+                        <td>@rowNum</td>
+                        <td>@item.Name</td>
+                        <td>@item.Url</td>
+                        <td>@item.IntervalTime</td>
+                        <td>@item.Email</td>
+                        <td>
+                            <button type="button" onclick='location.href = "@Url.Action("EditSite", "Site", new {id = item.Id})"' class="btn  btn-icon btn-outline-success" style="height: 30px; width: 30px;">
+                                <i class="feather icon-check-circle"></i>
+                            </button>
+                        </td>
+                        <td>
+                        <button type="button" onclick='deleteSite(@item.Id)' class="btn  btn-icon btn-outline-danger" style="height: 30px; width: 30px;">
+                            <i class="feather icon-slash"></i>
+                        </button>
+                    </tr>
+                }
                 </tbody>
             </table>
         </div>
@@ -45,48 +52,50 @@
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#btnAddNewSite').on("click", function() {
-            window.location.href = "/Site/AddSite";
-        })
+    $(document).ready(function() {
+        $('#btnAddNewSite').on("click",
+            function() {
+                window.location.href = "/Site/AddSite";
+            });
     });
 
     function deleteSite(id) {
 
-        bootbox.confirm("Delete the site?", function (e) {
-            if (e) {
-                $.ajax({
-                    url: '@Url.Action("DeleteSite")',
-                    type: 'POST',
-                    async: true,
-                    data: { id: id },
-                    dataType: "json",
-                    success: function (response) {
-                        StartRecurringNotificationJob();
-                        bootbox.alert(response.msg);
-                        $("#dataTable").load(" #dataTable > *");
-                    },
-                    error: function () {
-                        bootbox.alert("error");
-                    }
-                });
-            }
-        })
+        bootbox.confirm("Delete the site?",
+            function(e) {
+                if (e) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteSite")',
+                        type: 'POST',
+                        async: true,
+                        data: { id: id },
+                        dataType: "json",
+                        success: function(response) {
+                            StartRecurringNotificationJob();
+                            bootbox.alert(response.msg);
+                            $("#dataTable").load(" #dataTable > *");
+                        },
+                        error: function() {
+                            bootbox.alert("error");
+                        }
+                    });
+                }
+            });
 
     }
 
     function StartRecurringNotificationJob() {
-            $.ajax({
-                url: '@Url.Action("StartRecurringNotificationJob","Job")',
-                type: 'GET',
-                async: true,
-                dataType: "json",
-                success: function (response) {
+        $.ajax({
+            url: '@Url.Action("StartRecurringNotificationJob", "Job")',
+            type: 'GET',
+            async: true,
+            dataType: "json",
+            success: function(response) {
 
-                },
-                error: function (ex) {
+            },
+            error: function(ex) {
 
-                }
-            });
-        }
+            }
+        });
+    }
 </script>

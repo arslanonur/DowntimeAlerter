@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-header" style="text-align:center">
+            <div class="card-header" style="text-align: center">
                 <h5>Add User</h5>
             </div>
             <div class="card-body">
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="float:right">
+                    <div class="row" style="float: right">
                         <button type="button" id="addUser" class="btn btn-primary mb-2">Add User</button>
                     </div>
 
@@ -53,43 +53,42 @@
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#addUser').on('click', function () {
+    $(document).ready(function() {
+        $('#addUser').on('click',
+            function() {
 
-            if (!$("#frmAddUser")[0].checkValidity()) {
-                if (!$('#txtName')[0].checkValidity()) {
-                    bootbox.alert("Fill Name area");
+                if (!$("#frmAddUser")[0].checkValidity()) {
+                    if (!$('#txtName')[0].checkValidity()) {
+                        bootbox.alert("Fill Name area");
+                    } else if (!$('#txtUsername')[0].checkValidity()) {
+                        bootbox.alert("Fill UserName area");
+                    } else if (!$('#txtPassword')[0].checkValidity()) {
+                        bootbox.alert("Fill Password area");
+                    }
+                    return;
                 }
-                else if (!$('#txtUsername')[0].checkValidity()) {
-                    bootbox.alert("Fill UserName area");
-                }
-                else if (!$('#txtPassword')[0].checkValidity()) {
-                    bootbox.alert("Fill Password area");
-                }
-                return;
-            }
 
-            var formData = {
-                Name: $('#txtName').val(),
-                UserName: $('#txtUsername').val(),
-                Password: $('#txtPassword').val(),
-                Type: $('#drpUserType').val(),
-            }
+                var formData = {
+                    Name: $('#txtName').val(),
+                    UserName: $('#txtUsername').val(),
+                    Password: $('#txtPassword').val(),
+                    Type: $('#drpUserType').val(),
+                };
 
-            $.ajax({
-                url: '@Url.Action("CreateUser")',
-                type: 'POST',
-                async: true,
-                data: formData,
-                dataType: "json",
-                success: function (response) {
-                    bootbox.alert(response.msg);
-                },
-                error: function (ex) {
-                    bootbox.alert("Unexpected Error");
-                }
+                $.ajax({
+                    url: '@Url.Action("CreateUser")',
+                    type: 'POST',
+                    async: true,
+                    data: formData,
+                    dataType: "json",
+                    success: function(response) {
+                        bootbox.alert(response.msg);
+                    },
+                    error: function(ex) {
+                        bootbox.alert("Unexpected Error");
+                    }
+                });
             });
-        })
 
     })
 </script>

@@ -10,7 +10,6 @@ using Hangfire;
 using Hangfire.Storage;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace DowntimeAlerter.WebApi.Controllers
 {
@@ -36,7 +35,7 @@ namespace DowntimeAlerter.WebApi.Controllers
         public async Task<ActionResult> Login(UserDTO model)
         {
             if (model.Username == string.Empty || model.Password == string.Empty)
-                return Json(new { success = true, msg = "Please enter username and password.!" });
+                return Json(new {success = true, msg = "Please enter username and password.!"});
 
             try
             {
@@ -51,15 +50,15 @@ namespace DowntimeAlerter.WebApi.Controllers
                     option.Expires = DateTime.Now.AddMinutes(60);
                     Response.Cookies.Append(ProjectConstants.CookieName, returnUser.Id.ToString(), option);
                     await _logService.LogInfo("Login Success from " + returnUser.UserName);
-                    return Json(new { success = true, msg = string.Empty });
+                    return Json(new {success = true, msg = string.Empty});
                 }
 
-                return Json(new { success = false, msg = "Username or password is incorrect!" });
+                return Json(new {success = false, msg = "Username or password is incorrect!"});
             }
             catch (Exception ex)
             {
                 await _logService.LogError(ex.Message, ex.InnerException.Message);
-                return Json(new { success = false, msg = "An error was occured" });
+                return Json(new {success = false, msg = "An error was occured"});
             }
         }
 

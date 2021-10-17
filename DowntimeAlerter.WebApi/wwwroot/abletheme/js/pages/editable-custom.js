@@ -1,27 +1,25 @@
 $(document).ready(function() {
     // [ editable1 ]
-    $('#example-1').Tabledit({
+    $("#example-1").Tabledit({
         editButton: false,
         deleteButton: false,
         hideIdentifier: true,
         columns: {
-            identifier: [0, 'id'],
+            identifier: [0, "id"],
             editable: [
-                [1, 'First Name'],
-                [2, 'Last Name']
+                [1, "First Name"],
+                [2, "Last Name"]
             ]
         }
     });
     // [ editable2 ]
-    $('#example-2').Tabledit({
-
+    $("#example-2").Tabledit({
         columns: {
-
-            identifier: [0, 'id'],
+            identifier: [0, "id"],
 
             editable: [
-                [1, 'First Name'],
-                [2, 'Last Name']
+                [1, "First Name"],
+                [2, "Last Name"]
             ]
 
         }
@@ -37,12 +35,18 @@ function add_row() {
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
 
-    cell1.className = 'abc';
-    cell2.className = 'abc';
+    cell1.className = "abc";
+    cell2.className = "abc";
 
-    $('<span class="tabledit-span" >Click Me To Edit</span><input class="tabledit-input form-control input-sm" type="text" name="First" value="undefined" disabled="">').appendTo(cell1);
-    $('<span class="tabledit-span" >Click Me To Edit</span><input class="tabledit-input form-control input-sm" type="text" name="Last" value="undefined"  disabled="">').appendTo(cell2);
-    $('<span class="tabledit-span" >@mdo</span><select class="tabledit-input form-control input-sm" name="Nickname"  disabled="" ><option value="1">@mdo</option><option value="2">@fat</option><option value="3">@twitter</option></select>').appendTo(
-        cell3);
+    $(
+            '<span class="tabledit-span" >Click Me To Edit</span><input class="tabledit-input form-control input-sm" type="text" name="First" value="undefined" disabled="">')
+        .appendTo(cell1);
+    $(
+            '<span class="tabledit-span" >Click Me To Edit</span><input class="tabledit-input form-control input-sm" type="text" name="Last" value="undefined"  disabled="">')
+        .appendTo(cell2);
+    $(
+            '<span class="tabledit-span" >@mdo</span><select class="tabledit-input form-control input-sm" name="Nickname"  disabled="" ><option value="1">@mdo</option><option value="2">@fat</option><option value="3">@twitter</option></select>')
+        .appendTo(
+            cell3);
 
 };

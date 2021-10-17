@@ -17,18 +17,20 @@ namespace DowntimeAlerter.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task LogError(string exception,string message)
+        public async Task LogError(string exception, string message)
         {
-            var log = new Log {
+            var log = new Log
+            {
                 Exception = exception,
                 Level = LogTypes.Error.ToString(),
                 Message = message,
                 TimeStamp = DateTime.Now,
-                MessageTemplate = string.Empty                
+                MessageTemplate = string.Empty
             };
 
-            await CreateLog(log);   
+            await CreateLog(log);
         }
+
         public async Task LogInfo(string message)
         {
             var log = new Log
@@ -40,15 +42,9 @@ namespace DowntimeAlerter.Services
                 MessageTemplate = string.Empty
             };
 
-            await CreateLog(log);            
+            await CreateLog(log);
         }
 
-        public async Task<Log> CreateLog(Log log)
-        {
-            await _unitOfWork.Log.AddAsync(log);
-            await _unitOfWork.CommitAsync();
-            return log;
-        }
         public async Task<Log> GetLog(int id)
         {
             return await _unitOfWork.Log.GetLog(id);
@@ -59,5 +55,11 @@ namespace DowntimeAlerter.Services
             return await _unitOfWork.Log.GetLogsAsync();
         }
 
+        public async Task<Log> CreateLog(Log log)
+        {
+            await _unitOfWork.Log.AddAsync(log);
+            await _unitOfWork.CommitAsync();
+            return log;
+        }
     }
 }

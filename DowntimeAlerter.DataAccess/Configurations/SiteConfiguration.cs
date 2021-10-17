@@ -25,7 +25,7 @@ namespace DowntimeAlerter.DataAccess.Configurations
             builder
                 .Property(m => m.Url)
                 .IsRequired()
-                .HasMaxLength(2048);     
+                .HasMaxLength(2048);
 
             builder
                 .ToTable("Site");

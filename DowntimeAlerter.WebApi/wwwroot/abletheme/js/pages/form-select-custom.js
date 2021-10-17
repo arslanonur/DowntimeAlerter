@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 $(document).ready(function() {
     // [ Single Select ]
     $(".js-example-basic-single").select2();
@@ -19,7 +19,7 @@ $(document).ready(function() {
     // [ Automatic Select ]
     $(".js-example-tokenizer").select2({
         tags: true,
-        tokenSeparators: [',', ' ']
+        tokenSeparators: [",", " "]
     });
 
     // [ RTL Support ]
@@ -39,22 +39,24 @@ $(document).ready(function() {
     $(".js-example-responsive").select2();
 
     // [ loading array ]
-    var data = [{
-        id: 0,
-        text: 'enhancement'
-    }, {
-        id: 1,
-        text: 'bug'
-    }, {
-        id: 2,
-        text: 'duplicate'
-    }, {
-        id: 3,
-        text: 'invalid'
-    }, {
-        id: 4,
-        text: 'wontfix'
-    }];
+    var data = [
+        {
+            id: 0,
+            text: "enhancement"
+        }, {
+            id: 1,
+            text: "bug"
+        }, {
+            id: 2,
+            text: "duplicate"
+        }, {
+            id: 3,
+            text: "invalid"
+        }, {
+            id: 4,
+            text: "wontfix"
+        }
+    ];
     $(".js-example-data-array").select2({
         data: data
     });
@@ -64,18 +66,28 @@ $(document).ready(function() {
         if (repo.loading) return repo.text;
 
         var markup = "<div class='select2-result-repository clearfix'>" +
-            "<div class='select2-result-repository__avatar'><img src='" + repo.owner.avatar_url + "' /></div>" +
+            "<div class='select2-result-repository__avatar'><img src='" +
+            repo.owner.avatar_url +
+            "' /></div>" +
             "<div class='select2-result-repository__meta'>" +
-            "<div class='select2-result-repository__title'>" + repo.full_name + "</div>";
+            "<div class='select2-result-repository__title'>" +
+            repo.full_name +
+            "</div>";
 
         if (repo.description) {
             markup += "<div class='select2-result-repository__description'>" + repo.description + "</div>";
         }
 
         markup += "<div class='select2-result-repository__statistics'>" +
-            "<div class='select2-result-repository__forks'><i class='icofont icofont-flash'></i> " + repo.forks_count + " Forks</div>" +
-            "<div class='select2-result-repository__stargazers'><i class='icofont icofont-star'></i> " + repo.stargazers_count + " Stars</div>" +
-            "<div class='select2-result-repository__watchers'><i class='icofont icofont-eye-alt'></i> " + repo.watchers_count + " Watchers</div>" +
+            "<div class='select2-result-repository__forks'><i class='icofont icofont-flash'></i> " +
+            repo.forks_count +
+            " Forks</div>" +
+            "<div class='select2-result-repository__stargazers'><i class='icofont icofont-star'></i> " +
+            repo.stargazers_count +
+            " Stars</div>" +
+            "<div class='select2-result-repository__watchers'><i class='icofont icofont-eye-alt'></i> " +
+            repo.watchers_count +
+            " Watchers</div>" +
             "</div>" +
             "</div></div>";
 
@@ -85,10 +97,11 @@ $(document).ready(function() {
     function formatRepoSelection(repo) {
         return repo.full_name || repo.text;
     }
+
     $(".js-data-example-ajax").select2({
         ajax: {
             url: "https://api.github.com/search/repositories",
-            dataType: 'json',
+            dataType: "json",
             delay: 250,
             data: function(params) {
                 return {
@@ -128,10 +141,12 @@ $(document).ready(function() {
     $(".js-example-disabled").select2({
         disabled: false
     });
-    $(".js-programmatic-enable").on("click", function() {
-        $(".js-example-disabled").prop("disabled", false);
-    });
-    $(".js-programmatic-disable").on("click", function() {
-        $(".js-example-disabled").prop("disabled", true);
-    });
+    $(".js-programmatic-enable").on("click",
+        function() {
+            $(".js-example-disabled").prop("disabled", false);
+        });
+    $(".js-programmatic-disable").on("click",
+        function() {
+            $(".js-example-disabled").prop("disabled", true);
+        });
 });

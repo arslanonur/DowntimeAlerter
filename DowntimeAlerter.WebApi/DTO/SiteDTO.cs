@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace DowntimeAlerter.WebApi.DTO
 {
@@ -10,6 +9,6 @@ namespace DowntimeAlerter.WebApi.DTO
         public string Url { get; set; }
         public long IntervalTime { get; set; }
         public string Email { get; set; }
-        public DateTime CheckedDate { get; set; }        
+        public DateTime CheckedDate { get; set; }
     }
 }

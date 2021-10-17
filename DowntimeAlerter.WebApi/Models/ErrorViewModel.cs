@@ -1,5 +1,3 @@
-using System;
-
 namespace DowntimeAlerter.WebApi.Models
 {
     public class ErrorViewModel

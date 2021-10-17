@@ -24,6 +24,7 @@ namespace DowntimeAlerter.Services
         {
             return await _unitOfWork.Users.GetAllAsync();
         }
+
         public async Task<User> CreateUser(User newUser)
         {
             await _unitOfWork.Users.AddAsync(newUser);

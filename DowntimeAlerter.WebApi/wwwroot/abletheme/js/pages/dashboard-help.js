@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 $(document).ready(function() {
 
     // satisfaction-chart
@@ -10,7 +10,7 @@ $(document).ready(function() {
     $(function() {
         var options1 = {
             chart: {
-                type: 'area',
+                type: "area",
                 height: 100,
                 sparkline: {
                     enabled: true
@@ -18,13 +18,15 @@ $(document).ready(function() {
             },
             colors: ["#536dfe"],
             stroke: {
-                curve: 'smooth',
+                curve: "smooth",
                 width: 2,
             },
-            series: [{
-                name: 'series1',
-                data: [0, 20, 10, 45, 30, 55, 20, 30, 0]
-            }],
+            series: [
+                {
+                    name: "series1",
+                    data: [0, 20, 10, 45, 30, 55, 20, 30, 0]
+                }
+            ],
             tooltip: {
                 fixed: {
                     enabled: false
@@ -35,7 +37,7 @@ $(document).ready(function() {
                 y: {
                     title: {
                         formatter: function(seriesName) {
-                            return ''
+                            return "";
                         }
                     }
                 },
@@ -43,7 +45,7 @@ $(document).ready(function() {
                     show: false
                 }
             }
-        }
+        };
         new ApexCharts(document.querySelector("#support-chart"), options1).render();
     });
     // [ support-chart ] end
@@ -51,7 +53,7 @@ $(document).ready(function() {
     $(function() {
         var options1 = {
             chart: {
-                type: 'area',
+                type: "area",
                 height: 100,
                 sparkline: {
                     enabled: true
@@ -59,13 +61,15 @@ $(document).ready(function() {
             },
             colors: ["#4680ff"],
             stroke: {
-                curve: 'smooth',
+                curve: "smooth",
                 width: 2,
             },
-            series: [{
-                name: 'series1',
-                data: [0, 20, 10, 45, 30, 55, 20, 30, 0]
-            }],
+            series: [
+                {
+                    name: "series1",
+                    data: [0, 20, 10, 45, 30, 55, 20, 30, 0]
+                }
+            ],
             tooltip: {
                 fixed: {
                     enabled: false
@@ -76,7 +80,7 @@ $(document).ready(function() {
                 y: {
                     title: {
                         formatter: function(seriesName) {
-                            return ''
+                            return "";
                         }
                     }
                 },
@@ -84,7 +88,7 @@ $(document).ready(function() {
                     show: false
                 }
             }
-        }
+        };
         new ApexCharts(document.querySelector("#support-chart1"), options1).render();
     });
     // [ support-chart1 ] end
@@ -92,7 +96,7 @@ $(document).ready(function() {
     $(function() {
         var options1 = {
             chart: {
-                type: 'area',
+                type: "area",
                 height: 100,
                 sparkline: {
                     enabled: true
@@ -100,13 +104,15 @@ $(document).ready(function() {
             },
             colors: ["#9ccc65"],
             stroke: {
-                curve: 'smooth',
+                curve: "smooth",
                 width: 2,
             },
-            series: [{
-                name: 'series1',
-                data: [0, 20, 10, 45, 30, 55, 20, 30, 0]
-            }],
+            series: [
+                {
+                    name: "series1",
+                    data: [0, 20, 10, 45, 30, 55, 20, 30, 0]
+                }
+            ],
             tooltip: {
                 fixed: {
                     enabled: false
@@ -117,7 +123,7 @@ $(document).ready(function() {
                 y: {
                     title: {
                         formatter: function(seriesName) {
-                            return ''
+                            return "";
                         }
                     }
                 },
@@ -125,7 +131,7 @@ $(document).ready(function() {
                     show: false
                 }
             }
-        }
+        };
         new ApexCharts(document.querySelector("#support-chart2"), options1).render();
     });
     // [ support-chart2 ] end
@@ -135,7 +141,7 @@ $(document).ready(function() {
         var options = {
             chart: {
                 height: 260,
-                type: 'pie',
+                type: "pie",
             },
             series: [66, 50, 40, 30],
             labels: ["Very Poor", "Satisfied", "Very Satisfied", "Poor"],
@@ -146,34 +152,37 @@ $(document).ready(function() {
             theme: {
                 monochrome: {
                     enabled: true,
-                    color: '#4680ff',
+                    color: "#4680ff",
                 }
             },
-            responsive: [{
-                breakpoint: 768,
-                options: {
-                    chart: {
-                        height: 320,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    options: {
+                        chart: {
+                            height: 320,
 
-                    },
-                    legend: {
-                        position: 'bottom',
-                        offsetY: 0,
+                        },
+                        legend: {
+                            position: "bottom",
+                            offsetY: 0,
+                        }
                     }
                 }
-            }]
-        }
+            ]
+        };
         var chart = new ApexCharts(document.querySelector("#satisfaction-chart"), options);
         chart.render();
     });
     // [ satisfaction-chart ] end
 
     // [ latest-scroll ] start
-    var px = new PerfectScrollbar('.latest-scroll', {
-        wheelSpeed: .5,
-        swipeEasing: 0,
-        wheelPropagation: 1,
-        minScrollbarLength: 40,
-    });
+    var px = new PerfectScrollbar(".latest-scroll",
+        {
+            wheelSpeed: .5,
+            swipeEasing: 0,
+            wheelPropagation: 1,
+            minScrollbarLength: 40,
+        });
     // [ latest-scroll ] end
 });

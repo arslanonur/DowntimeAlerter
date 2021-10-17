@@ -10,7 +10,8 @@ namespace DowntimeAlerter.DataAccess.Repositories
     {
         public LogRepository(DowntimeAlerterDbContext context)
             : base(context)
-        { }
+        {
+        }
 
         private DowntimeAlerterDbContext DowntimeAlerterDbContext => Context as DowntimeAlerterDbContext;
 

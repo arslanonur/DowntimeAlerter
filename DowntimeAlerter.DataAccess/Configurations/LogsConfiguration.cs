@@ -1,7 +1,6 @@
 ﻿using DowntimeAlerter.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
 namespace DowntimeAlerter.DataAccess.Configurations
 {
@@ -17,15 +16,15 @@ namespace DowntimeAlerter.DataAccess.Configurations
                 .UseIdentityColumn();
 
             builder
-                .Property(m => m.Level)                
+                .Property(m => m.Level)
                 .HasMaxLength(50);
 
             builder
-                .Property(m => m.MessageTemplate)                
+                .Property(m => m.MessageTemplate)
                 .HasMaxLength(50);
 
             builder
-                .Property(m => m.Message)                
+                .Property(m => m.Message)
                 .HasMaxLength(500);
 
             builder

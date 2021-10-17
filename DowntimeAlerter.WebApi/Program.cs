@@ -1,11 +1,7 @@
-using DowntimeAlerter.Core.Models;
-using DowntimeAlerter.Core.Services;
-using DowntimeAlerter.WebApi.Controllers;
+using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-
-using System;
 
 namespace DowntimeAlerter.WebApi
 {
@@ -16,7 +12,7 @@ namespace DowntimeAlerter.WebApi
             CreateHostBuilder(args).Build().Run();
 
             try
-            {                
+            {
                 //Log.Information("Starting up");
                 CreateHostBuilder(args).Build().Run();
             }
@@ -24,20 +20,16 @@ namespace DowntimeAlerter.WebApi
             {
                 //Log.Fatal(ex, "Application start-up failed");
             }
-            finally
-            {
-                //Log.CloseAndFlush();
-            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             var configSettings = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
-                .Build();            
+                .Build();
 
             return Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration(config => { config.AddConfiguration(configSettings); })                
+                .ConfigureAppConfiguration(config => { config.AddConfiguration(configSettings); })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
         }
     }

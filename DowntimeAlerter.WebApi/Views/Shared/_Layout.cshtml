@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - DowntimeAlerter.WebApi</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
     <!-- Favicon icon -->
     <link rel="icon" href="~/abletheme/images/favicon.ico" type="image/x-icon">
 
@@ -14,119 +14,148 @@
 </head>
 <body>
 
-    <!-- [ navigation menu ] start -->
-    <nav class="pcoded-navbar theme-horizontal menu-dark ">
-        <div class="navbar-wrapper container">
-            <div class="navbar-content scroll-div ">
-                <ul class="nav pcoded-inner-navbar sidenav-inner" style=" width: 100%;">
-                    <li class="nav-item">
-                        <a href="@Url.Action("Index","Home")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Homepage</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="@Url.Action("Index","Site")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-tv"></i></span><span class="pcoded-mtext">Sites</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="@Url.Action("Index","NotificationLog")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-alert-triangle"></i></span><span class="pcoded-mtext">Notifications</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="@Url.Action("Index","User")" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Users</span></a>
-                    </li>
+<!-- [ navigation menu ] start -->
+<nav class="pcoded-navbar theme-horizontal menu-dark ">
+    <div class="navbar-wrapper container">
+        <div class="navbar-content scroll-div ">
+            <ul class="nav pcoded-inner-navbar sidenav-inner" style="width: 100%;">
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Home")" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-home"></i>
+                        </span><span class="pcoded-mtext">Homepage</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Site")" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-tv"></i>
+                        </span><span class="pcoded-mtext">Sites</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "NotificationLog")" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-alert-triangle"></i>
+                        </span><span class="pcoded-mtext">Notifications</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "User")" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-user"></i>
+                        </span><span class="pcoded-mtext">Users</span>
+                    </a>
+                </li>
 
-                    <li class="nav-item pcoded-hasmenu" style=" right: 0; float: right; ">
-                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Authentication</span></a>
-                        <ul class="pcoded-submenu">
-                            <li><a href="@Url.Action("Logout","Login")" target="_blank">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                <li class="nav-item pcoded-hasmenu" style="float: right; right: 0;">
+                    <a href="#!" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-lock"></i>
+                        </span><span class="pcoded-mtext">Authentication</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li>
+                            <a href="@Url.Action("Logout", "Login")" target="_blank">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
 
-            </div>
         </div>
-    </nav>
-    <!-- [ navigation menu ] end -->
-    <!-- [ Header ] start -->
-    <header class="navbar pcoded-header navbar-expand-lg navbar-light" style="background:white !important">
-        <div class="m-header col-md-12" style="top:20px">
-            <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-            <a href="#!" class="b-brand">
-                <!-- ========   change your logo hear   ============ -->
-                <img src="~/img/downtimeAlertetIcon.png" />
-            </a>
-            <a href="#!" class="mob-toggler">
-                <i class="feather icon-more-vertical"></i>
-            </a>
-        </div>
-    </header>
-    <!-- [ Header ] end -->
+    </div>
+</nav>
+<!-- [ navigation menu ] end -->
+<!-- [ Header ] start -->
+<header class="navbar pcoded-header navbar-expand-lg navbar-light" style="background: white !important">
+    <div class="m-header col-md-12" style="top: 20px">
+        <a class="mobile-menu" id="mobile-collapse" href="#!">
+            <span></span>
+        </a>
+        <a href="#!" class="b-brand">
+            <!-- ========   change your logo hear   ============ -->
+            <img src="~/img/downtimeAlertetIcon.png"/>
+        </a>
+        <a href="#!" class="mob-toggler">
+            <i class="feather icon-more-vertical"></i>
+        </a>
+    </div>
+</header>
+<!-- [ Header ] end -->
 
-    <div class="pcoded-main-container" style="margin-top:70px !important">
-        <div class="pcoded-wrapper container">
-            <div class="pcoded-content">
-                <div class="pcoded-inner-content">
-                    <div class="main-body">
-                        <!-- [ Main Content ] start -->
+<div class="pcoded-main-container" style="margin-top: 70px !important">
+    <div class="pcoded-wrapper container">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <div class="main-body">
+                    <!-- [ Main Content ] start -->
 
-                        @RenderBody()
+                    @RenderBody()
 
-                        <!-- [ Main Content ] end -->
+                    <!-- [ Main Content ] end -->
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
 
-    <!-- Required Js -->
-    <script src="~/abletheme/js/vendor-all.min.js"></script>
-    <script src="~/abletheme/js/plugins/bootstrap.min.js"></script>
-    <script src="~/abletheme/js/ripple.js"></script>
-    <script src="~/abletheme/js/pcoded.min.js"></script>
+<!-- Required Js -->
+<script src="~/abletheme/js/vendor-all.min.js"></script>
+<script src="~/abletheme/js/plugins/bootstrap.min.js"></script>
+<script src="~/abletheme/js/ripple.js"></script>
+<script src="~/abletheme/js/pcoded.min.js"></script>
 
 
-    <!-- prism Js -->
-    <script src="~/abletheme/js/plugins/prism.js"></script>
-    <script src="~/abletheme/js/horizontal-menu.js"></script>
+<!-- prism Js -->
+<script src="~/abletheme/js/plugins/prism.js"></script>
+<script src="~/abletheme/js/horizontal-menu.js"></script>
 
-    <!-- bootbox Js -->
-    <script src="~/js/bootbox/bootbox.all.min.js"></script>
-    <script>
-        (function () {
-            try {
-                window.layoutHelpers._getSetting("Rtl")
-                window.layoutHelpers.setCollapsed(
-                    localStorage.getItem('layoutCollapsed') === 'true',
-                    false
-                );
-            } catch (e) { }
-        })();
-        $(function () {
-            $('#layout-sidenav').each(function () {
-                new SideNav(this, {
+<!-- bootbox Js -->
+<script src="~/js/bootbox/bootbox.all.min.js"></script>
+<script>
+    (function() {
+        try {
+            window.layoutHelpers._getSetting("Rtl");
+            window.layoutHelpers.setCollapsed(
+                localStorage.getItem('layoutCollapsed') === 'true',
+                false
+            );
+        } catch (e) {
+        }
+    })();
+    $(function() {
+        $('#layout-sidenav').each(function() {
+            new SideNav(this,
+                {
                     orientation: $(this).hasClass('sidenav-horizontal') ? 'horizontal' : 'vertical'
                 });
-            });
-            $('body').on('click', '.layout-sidenav-toggle', function (e) {
+        });
+        $('body').on('click',
+            '.layout-sidenav-toggle',
+            function(e) {
                 e.preventDefault();
                 window.layoutHelpers.toggleCollapsed();
                 if (!window.layoutHelpers.isSmallScreen()) {
                     try {
                         localStorage.setItem('layoutCollapsed', String(window.layoutHelpers.isCollapsed()));
-                    } catch (e) { }
+                    } catch (e) {
+                    }
                 }
             });
+    });
+    $(document).ready(function() {
+        $("#pcoded").pcodedmenu({
+            themelayout: 'horizontal',
+            MenuTrigger: 'hover',
+            SubMenuTrigger: 'hover',
         });
-        $(document).ready(function () {
-            $("#pcoded").pcodedmenu({
-                themelayout: 'horizontal',
-                MenuTrigger: 'hover',
-                SubMenuTrigger: 'hover',
-            });
-        });
-    </script>
-    @await RenderSectionAsync("Scripts", required: false)
+    });
+</script>
+@await RenderSectionAsync("Scripts", false)
 
 </body>
 </html>
