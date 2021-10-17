@@ -28,7 +28,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="floating-label" for="Interval">Interval (second)</label>
-                                <input type="number" class="form-control" id="nbrIntervalTime" name="IntervalTime" required>
+                                <input type="number" class="form-control" id="nbrIntervalTime" name="IntervalTime" min="60" required>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -87,7 +87,9 @@
                 dataType: "json",
                 success: function (response) {
                     StartRecurringNotificationJob();
-                    bootbox.alert(response.msg);
+                    bootbox.alert(response.msg, function(e) {
+                        window.location.href = "/Site/Index";
+                    });
                 },
                 error: function (ex) {
                     bootbox.alert("Unexpected Error");

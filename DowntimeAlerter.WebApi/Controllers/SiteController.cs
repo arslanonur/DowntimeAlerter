@@ -166,6 +166,7 @@ namespace DowntimeAlerter.WebApi.Controllers
                 if (site != null)
                 {
                     await _siteService.DeleteSite(site);
+                    await _logService.LogInfo("Site deleted. Deleted site name : " + site.Name);
                     return Json(new { success = false, msg = "The site deleted successfuly" });
                 }
 

@@ -2,9 +2,9 @@
 
 <div class="card">
     <div class="card-header">
-        <h5>Sites List</h5>        
+        <h5>Sites List</h5>
         <div>
-            <button id="btnAddNewSite"  type="button" class="btn  btn-primary float-right">Add New Site</button>
+            <button id="btnAddNewSite" type="button" class="btn  btn-primary float-right">Add New Site</button>
         </div>
     </div>
     <div class="card-body table-border-style">
@@ -22,10 +22,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @{int rowNum = 0;}
                     @foreach (var item in Model)
                     {
+                        rowNum++;
                         <tr>
-                            <td>@item.Id</td>
+                            <td>@rowNum</td>
                             <td>@item.Name</td>
                             <td>@item.Url</td>
                             <td>@item.IntervalTime</td>

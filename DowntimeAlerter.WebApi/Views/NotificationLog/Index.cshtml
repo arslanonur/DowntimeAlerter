@@ -2,7 +2,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h5>Notifications Logs</h5>        
+        <h5>Notifications Logs</h5>
     </div>
     <div class="card-body table-border-style">
         <div class="table-responsive" id="dataTable">
@@ -18,12 +18,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @{int rowNum = 0;}
                     @foreach (var item in Model)
                     {
+                        rowNum++;
                         @if (item.State == "Down")
                         {
                             <tr class="">
-                                <td>@item.Id</td>
+                                <td>@rowNum</td>
                                 <td style="background: #ffa5a5;">@item.State</td>
                                 <td>@item.SiteName</td>
                                 <td>@item.NotificationType</td>
@@ -34,8 +36,8 @@
                         else
                         {
                             <tr class="">
-                                <td>@item.Id</td>
-                                <td  style="background: #cce4af;">@item.State</td>
+                                <td>@rowNum</td>
+                                <td style="background: #cce4af;">@item.State</td>
                                 <td>@item.SiteName</td>
                                 <td>@item.NotificationType</td>
                                 <td>@item.Message</td>

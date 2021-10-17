@@ -31,11 +31,16 @@
             <div class="card">
                 <div class="row align-items-center text-center">
                     <div class="col-md-12">
+                        <img src="~/img/downtimeAlertetIcon.png" />
+                    </div>                    
+                </div>
+                <div class="row align-items-center text-center">
+                    <div class="col-md-12">
                         <div class="card-body">
                             <h3>Downtime Alerter</h3>
                             <h6 style=" text-align:right;margin-right: 25px;">
                                 for Invicti
-                            </h6>                            
+                            </h6>
                             <div class="form-group mb-3">
                                 <input type="text" class="form-control" id="txtUserName" placeholder="Username">
                             </div>
@@ -63,7 +68,7 @@
             $("#txtUserName,#txtPassword").on('keyup',
                 function (e) {
                     if (e.key === 'Enter' || e.keyCode === 13) {
-                        $('#btnSignin').click();                        
+                        $('#btnSignin').click();
                     }
                 });
         })

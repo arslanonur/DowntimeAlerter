@@ -50,7 +50,7 @@ namespace DowntimeAlerter.WebApi.Controllers
                     var option = new CookieOptions();
                     option.Expires = DateTime.Now.AddMinutes(60);
                     Response.Cookies.Append(ProjectConstants.CookieName, returnUser.Id.ToString(), option);
-                    _logService.LogInfo("Login Success from " + returnUser.UserName);
+                    await _logService.LogInfo("Login Success from " + returnUser.UserName);
                     return Json(new { success = true, msg = string.Empty });
                 }
 
@@ -58,29 +58,27 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logService.LogError(ex.Message, ex.InnerException.Message);
+                await _logService.LogError(ex.Message, ex.InnerException.Message);
                 return Json(new { success = false, msg = "An error was occured" });
             }
-
-
-            return Json(new { success = true, msg = "User input is not valid." });
         }
 
         [HttpGet]
-        public IActionResult Logout()
+        public async Task<IActionResult> LogoutAsync()
         {
             try
             {
                 Response.Cookies.Delete(ProjectConstants.CookieName);
                 using (var connection = JobStorage.Current.GetConnection())
                 {
+                    await _logService.LogInfo("User logged out");
                     foreach (var recurringJob in connection.GetRecurringJobs())
                         RecurringJob.RemoveIfExists(recurringJob.Id);
                 }
             }
             catch (Exception ex)
             {
-                _logService.LogError(ex.Message, ex.InnerException.Message);
+                await _logService.LogError(ex.Message, ex.InnerException.Message);
             }
 
             return RedirectToAction("Login");

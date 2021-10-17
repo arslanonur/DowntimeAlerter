@@ -20,12 +20,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @{int rowNo = 0; } 
+                    @{int rowNum = 0; } 
                     @foreach (var item in Model)
                     {
-                        rowNo++;
+                        rowNum++;
                         <tr>
-                            <td>@rowNo</td>
+                            <td>@rowNum</td>
                             <td>@item.Name</td>
                             <td>@item.Username</td>
                             <td>@item.Type</td>                                                        
