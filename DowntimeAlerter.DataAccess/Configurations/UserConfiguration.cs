@@ -31,6 +31,10 @@ namespace DowntimeAlerter.DataAccess.Configurations
                 .HasMaxLength(300);
 
             builder
+                .Property(m => m.Type);
+
+
+            builder
                 .ToTable("Users");
         }
     }

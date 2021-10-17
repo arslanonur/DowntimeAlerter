@@ -24,19 +24,24 @@ namespace DowntimeAlerter.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Exception")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Level")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("MessageTemplate")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("TimeStamp")
                         .HasColumnType("datetime2");
@@ -114,6 +119,7 @@ namespace DowntimeAlerter.DataAccess.Migrations
                         new
                         {
                             Id = 1,
+                            Email = "onur.arrslan@gmail.com",
                             IntervalTime = 40L,
                             Name = "Google",
                             Url = "https://google.com"
@@ -121,6 +127,7 @@ namespace DowntimeAlerter.DataAccess.Migrations
                         new
                         {
                             Id = 2,
+                            Email = "onur.arrslan@gmail.com",
                             IntervalTime = 30L,
                             Name = "Down Site Example",
                             Url = "https://example.org/impolite"
@@ -146,6 +153,9 @@ namespace DowntimeAlerter.DataAccess.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -161,7 +171,16 @@ namespace DowntimeAlerter.DataAccess.Migrations
                             Id = 1,
                             Name = "Onur ARSLAN",
                             Password = "61EDC5202B80B64056B78436F6385B9C",
+                            Type = 1,
                             UserName = "onurarslan"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "User STANDART",
+                            Password = "9B794565FE25E980414A6594670D93CC",
+                            Type = 2,
+                            UserName = "user"
                         });
                 });
 #pragma warning restore 612, 618

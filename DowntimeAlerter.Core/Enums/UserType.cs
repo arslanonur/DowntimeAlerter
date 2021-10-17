@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DowntimeAlerter.Core.Enums
 {
-    public enum StateType
+    public enum UserType
     {
-        Up = 1,
-        Down = 2
+        Admin = 1,
+        Standart = 2
     }
 }

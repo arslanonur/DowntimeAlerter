@@ -40,5 +40,12 @@ namespace DowntimeAlerter.Services
         {
             return await _unitOfWork.Users.GetUserByUserName(user);
         }
+
+        public async Task DeleteUser(User user)
+        {
+            _unitOfWork.Users.Remove(user);
+
+            await _unitOfWork.CommitAsync();
+        }
     }
 }

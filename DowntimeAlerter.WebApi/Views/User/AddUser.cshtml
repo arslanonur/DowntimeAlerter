@@ -1,0 +1,95 @@
+﻿@model IEnumerable<DowntimeAlerter.WebApi.DTO.UserDTO>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header" style="text-align:center">
+                <h5>Add User</h5>
+            </div>
+            <div class="card-body">
+                <form id="frmAddUser">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="floating-label" for="Name">Name</label>
+                                <input type="text" class="form-control" id="txtName" name="Name" aria-describedby="" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="floating-label" for="txtUsername">Username</label>
+                                <input type="text" class="form-control" id="txtUsername" name="Url" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="floating-label" for="txtPassword">Password</label>
+                                <input type="text" class="form-control" id="txtPassword" name="IntervalTime" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group fill">
+                                <label for="drpUserType">User Type</label>
+                                <select class="form-control" id="drpUserType">
+                                    <option value="1" selected>Admin</option>
+                                    <option value="2">Standart</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="float:right">
+                        <button type="button" id="addUser" class="btn btn-primary mb-2">Add User</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#addUser').on('click', function () {
+
+            if (!$("#frmAddUser")[0].checkValidity()) {
+                if (!$('#txtName')[0].checkValidity()) {
+                    bootbox.alert("Fill Name area");
+                }
+                else if (!$('#txtUsername')[0].checkValidity()) {
+                    bootbox.alert("Fill UserName area");
+                }
+                else if (!$('#txtPassword')[0].checkValidity()) {
+                    bootbox.alert("Fill Password area");
+                }
+                return;
+            }
+
+            var formData = {
+                Name: $('#txtName').val(),
+                UserName: $('#txtUsername').val(),
+                Password: $('#txtPassword').val(),
+                Type: $('#drpUserType').val(),
+            }
+
+            $.ajax({
+                url: '@Url.Action("CreateUser")',
+                type: 'POST',
+                async: true,
+                data: formData,
+                dataType: "json",
+                success: function (response) {
+                    bootbox.alert(response.msg);
+                },
+                error: function (ex) {
+                    bootbox.alert("Unexpected Error");
+                }
+            });
+        })
+
+    })
+</script>

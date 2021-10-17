@@ -12,5 +12,6 @@ namespace DowntimeAlerter.Core.Services
         Task<User> CreateUser(User newUser);
         Task<User> GetUserById(int id);
         Task<User> GetUserByUserName(User user);
+        Task DeleteUser(User user);
     }
 }

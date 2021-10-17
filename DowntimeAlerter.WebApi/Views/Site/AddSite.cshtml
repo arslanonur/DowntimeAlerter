@@ -48,16 +48,20 @@
     </div>
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
 <script>
     $(document).ready(function () {
         $('#addSiteSubmitBtn').on('click', function () {
-
+            
             if (!$("#frmAddSite")[0].checkValidity()) {
                 if (!$('#txtName')[0].checkValidity()) {
                     bootbox.alert("Fill Name area");
                 }
                 else if (!$('#txtUrl')[0].checkValidity()) {
                     bootbox.alert("Fill Url area like url format");
+                }
+                else if (!isUrlValid($('#txtUrl').val())) {
+                    bootbox.alert("Fill Url area like url format [http(s)://.. etc.]");
                 }
                 else if (!$('#nbrIntervalTime')[0].checkValidity()) {
                     bootbox.alert("Fill Interval Time area");

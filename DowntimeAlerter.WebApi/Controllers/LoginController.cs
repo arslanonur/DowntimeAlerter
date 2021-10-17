@@ -35,34 +35,33 @@ namespace DowntimeAlerter.WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(UserDTO model)
         {
-            if (ModelState.IsValid)
+            if (model.Username == string.Empty || model.Password == string.Empty)
+                return Json(new { success = true, msg = "Please enter username and password.!" });
+            var user = _mapper.Map<UserDTO, User>(model);
+            try
             {
-                if (model.Username == string.Empty || model.Password == string.Empty)
-                    return Json(new {success = true, msg = "Please enter username and password.!"});
-                var user = _mapper.Map<UserDTO, User>(model);
-                try
+                var md5Password = SecurePasswordHasher.CalculateMD5Hash(model.Password);
+                user.Password = md5Password;
+                var returnUser = await _userService.GetUserAsync(user);
+                if (returnUser != null)
                 {
-                    var md5Password = SecurePasswordHasher.CalculateMD5Hash(model.Password);
-                    user.Password = md5Password;
-                    var returnUser = await _userService.GetUserAsync(user);
-                    if (returnUser != null)
-                    {
-                        var option = new CookieOptions();
-                        option.Expires = DateTime.Now.AddMinutes(60);
-                        Response.Cookies.Append(ProjectConstants.CookieName, returnUser.Id.ToString(), option);
-                        return Json(new {success = true, msg = string.Empty});
-                    }
+                    ViewBag["UserInfo"] = returnUser.Type;
+                    var option = new CookieOptions();
+                    option.Expires = DateTime.Now.AddMinutes(60);
+                    Response.Cookies.Append(ProjectConstants.CookieName, returnUser.Id.ToString(), option);
+                    return Json(new { success = true, msg = string.Empty });
+                }
 
-                    return Json(new {success = false, msg = "Username or password is incorrect!"});
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex.Message);
-                    return Json(new {success = false, msg = "An error was occured"});
-                }
+                return Json(new { success = false, msg = "Username or password is incorrect!" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return Json(new { success = false, msg = "An error was occured" });
             }
 
-            return Json(new {success = true, msg = "model is not valid."});
+
+            return Json(new { success = true, msg = "model is not valid." });
         }
 
         [HttpGet]

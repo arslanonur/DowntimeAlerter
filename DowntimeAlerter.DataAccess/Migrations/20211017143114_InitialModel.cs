@@ -13,9 +13,9 @@ namespace DowntimeAlerter.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Level = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MessageTemplate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Level = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Message = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    MessageTemplate = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     TimeStamp = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Exception = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -65,7 +65,8 @@ namespace DowntimeAlerter.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,17 +76,20 @@ namespace DowntimeAlerter.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Site",
                 columns: new[] { "Id", "Email", "IntervalTime", "Name", "Url" },
-                values: new object[] { 1, null, 40L, "Google", "https://google.com" });
-
-            migrationBuilder.InsertData(
-                table: "Site",
-                columns: new[] { "Id", "Email", "IntervalTime", "Name", "Url" },
-                values: new object[] { 2, null, 30L, "Down Site Example", "https://example.org/impolite" });
+                values: new object[,]
+                {
+                    { 1, "onur.arrslan@gmail.com", 40L, "Google", "https://google.com" },
+                    { 2, "onur.arrslan@gmail.com", 30L, "Down Site Example", "https://example.org/impolite" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Name", "Password", "UserName" },
-                values: new object[] { 1, "Onur ARSLAN", "61EDC5202B80B64056B78436F6385B9C", "onurarslan" });
+                columns: new[] { "Id", "Name", "Password", "Type", "UserName" },
+                values: new object[,]
+                {
+                    { 1, "Onur ARSLAN", "61EDC5202B80B64056B78436F6385B9C", 1, "onurarslan" },
+                    { 2, "User STANDART", "9B794565FE25E980414A6594670D93CC", 2, "user" }
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

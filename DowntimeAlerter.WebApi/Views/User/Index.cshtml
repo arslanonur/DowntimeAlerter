@@ -1,0 +1,73 @@
+﻿@model List<DowntimeAlerter.WebApi.DTO.UserDTO>
+
+<div class="card">
+    <div class="card-header">
+        <h5>User List</h5>
+        <div>
+            <button id="btnAddNewUser" type="button" class="btn  btn-primary float-right">Add New User</button>
+        </div>
+    </div>
+    <div class="card-body table-border-style">
+        <div class="table-responsive" id="dataTable">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Type</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{int rowNo = 0; } 
+                    @foreach (var item in Model)
+                    {
+                        rowNo++;
+                        <tr>
+                            <td>@rowNo</td>
+                            <td>@item.Name</td>
+                            <td>@item.Username</td>
+                            <td>@item.Type</td>                                                        
+                            <td><button type="button" onclick='deleteUser(@item.Id)' class="btn  btn-icon btn-outline-danger" style="width: 30px; height: 30px;"><i class="feather icon-slash"></i></button>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#btnAddNewUser').on("click", function() {
+            window.location.href = "/User/AddUser";
+        })
+    });
+
+    function deleteUser(id) {
+
+        bootbox.confirm("Delete the user?", function (e) {
+            if (e) {
+                $.ajax({
+                    url: '@Url.Action("DeleteUser")',
+                    type: 'POST',
+                    async: true,
+                    data: { id: id },
+                    dataType: "json",
+                    success: function (response) {                        
+                        bootbox.alert(response.msg);
+                        $("#dataTable").load(" #dataTable > *");
+                    },
+                    error: function () {
+                        bootbox.alert("error");
+                    }
+                });
+            }
+        })
+
+    }
+
+</script>
