@@ -14,7 +14,7 @@ request to the URL returns a response code other than 2XX.
 
 **Built With**
 
-- ● .Net Core MVC 
+- ● .Net Core MVC 5.0
 - ● Jquery
 - ● Hangfire
 - ● MsSql
@@ -27,6 +27,19 @@ request to the URL returns a response code other than 2XX.
 - Username: onurarslan
 - Password:  0606Invicti!
 
+*Change target mail*
+You can change target mail address from application.json file like this.
+
+```
+> "MailSettings": {
+    "Mail": "onur.arslan.invicti2@gmail.com",
+    "DisplayName": "Downtime Alerter",
+    "Password": "0606Invicti!",
+    "Host": "smtp.gmail.com",
+    "Port": 587
+  }
+```
+  
 **Screenshots**
 ![alt text](https://user-images.githubusercontent.com/6920376/137645908-fca0dfe2-dbd0-4fca-8496-28f357cea097.PNG)
 ![alt text](https://user-images.githubusercontent.com/6920376/137645915-89f78e6d-f796-4da9-bc39-c5df39db1dec.PNG)
