@@ -14,12 +14,14 @@ namespace DowntimeAlerter.DataAccess
         public DbSet<Site> Sites { get; set; }
         public DbSet<Logs> Logs { get; set; }
         public DbSet<NotificationLogs> NotificationLogs { get; set; }
-
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Logs>().ToTable(nameof(Logs), t => t.ExcludeFromMigrations());
+            //builder.Entity<Logs>().ToTable(nameof(Logs));
+
+            builder
+                .ApplyConfiguration(new LogsConfiguration());
 
             builder
                 .ApplyConfiguration(new SiteConfiguration());
@@ -32,10 +34,10 @@ namespace DowntimeAlerter.DataAccess
 
             //example sites 200 and 404
             builder.Entity<Site>().HasData(
-                new Site { Id = 1, Name = "Google", Url = "https://google.com", IntervalTime = 40 });
+                new Site { Id = 1, Name = "Google", Url = "https://google.com", IntervalTime = 40 , Email = "onur.arrslan@gmail.com"});
 
             builder.Entity<Site>().HasData(
-                new Site { Id = 2, Name = "Down Site Example", Url = "https://example.org/impolite", IntervalTime = 30 });
+                new Site { Id = 2, Name = "Down Site Example", Url = "https://example.org/impolite", IntervalTime = 30 , Email="onur.arrslan@gmail.com"});
 
             var md5Password = SecurePasswordHasher.CalculateMD5Hash("0606Invicti!");
             builder.Entity<User>().HasData(

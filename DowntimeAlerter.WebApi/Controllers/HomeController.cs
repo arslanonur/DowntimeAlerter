@@ -7,6 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DowntimeAlerter.WebApi.Models;
 using DowntimeAlerter.WebApi.ActionFilters;
+using AutoMapper;
+using DowntimeAlerter.Core.Services;
+using DowntimeAlerter.Core.Models;
+using DowntimeAlerter.WebApi.DTO;
+using DowntimeAlerter.Core.Enums;
 
 namespace DowntimeAlerter.WebApi.Controllers
 {
@@ -14,14 +19,39 @@ namespace DowntimeAlerter.WebApi.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMapper _mapper;
+        private readonly INotificationLogsService _notificationLogService;
+        private readonly ISiteService _siteService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMapper mapper, INotificationLogsService notificationLogsService, ISiteService siteService)
         {
             _logger = logger;
+            _mapper = mapper;
+            _notificationLogService = notificationLogsService;
+            _siteService = siteService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            try
+            {
+                var sites = await _siteService.GetAllSites();
+                var siteResources = _mapper.Map<IEnumerable<Site>, IEnumerable<SiteDTO>>(sites);
+                var notificationLogs = await _notificationLogService.GetLogs();
+                var notificationLogsResource = _mapper.Map<IEnumerable<NotificationLogs>, IEnumerable<NotificationLogDTO>>(notificationLogs);
+                var downStateCount = notificationLogsResource.Count(x => x.State == StateType.Down.ToString());
+                var upStateCount = notificationLogsResource.Count(x => x.State == StateType.Up.ToString());
+
+                ViewBag.SiteCount = siteResources.Count();
+                ViewBag.NotificationLogsCount = notificationLogsResource.Count();
+                ViewBag.DownStateCount = downStateCount;
+                ViewBag.UpStateCount = upStateCount;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
+
             return View();
         }
 

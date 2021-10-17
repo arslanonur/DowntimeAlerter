@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DowntimeAlerter.DataAccess.Migrations
 {
     [DbContext(typeof(DowntimeAlerterDbContext))]
-    [Migration("20211017095605_UserInitialModel")]
-    partial class UserInitialModel
+    [Migration("20211017130521_InitialModel")]
+    partial class InitialModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,7 +45,7 @@ namespace DowntimeAlerter.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Logs", t => t.ExcludeFromMigrations());
+                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("DowntimeAlerter.Core.Models.NotificationLogs", b =>

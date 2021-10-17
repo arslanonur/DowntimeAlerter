@@ -46,7 +46,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             var sites = _siteService.GetAllSites();
             var siteResources = _mapper.Map<IEnumerable<Site>, IEnumerable<SiteDTO>>(sites.Result);
             foreach (var item in siteResources)
-            {
+            {                
                 item.CheckedDate = DateTime.Now;
             }
 
@@ -66,8 +66,7 @@ namespace DowntimeAlerter.WebApi.Controllers
                     try
                     {
                         var userEmails = item.Email;
-                        SendEmailToSiteUsers(userEmails, item);
-                        _logger.LogError("Mail gönderildi");
+                        SendEmailToSiteUsers(userEmails, item);                        
                     }
                     catch (Exception ex)
                     {

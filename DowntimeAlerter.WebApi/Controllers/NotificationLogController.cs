@@ -28,9 +28,11 @@ namespace DowntimeAlerter.WebApi.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var allNotificationLogs = await _notificaitonLogService.GetLogs();
+            var mappedNotificationLogs = _mapper.Map<IEnumerable<NotificationLogs>, IEnumerable<NotificationLogDTO>>(allNotificationLogs);
+            return View(mappedNotificationLogs.OrderByDescending(x=>x.Id));
         }
 
         [HttpPost]
@@ -41,12 +43,12 @@ namespace DowntimeAlerter.WebApi.Controllers
                 var logs = await _notificaitonLogService.GetLogs();
                 var logsDto = _mapper.Map<IEnumerable<NotificationLogs>, IEnumerable<NotificationLogDTO>>(logs)
                     .OrderByDescending(o => o.CheckedDate);
-                return Json(new {data = logsDto});
+                return Json(new { data = logsDto });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return Json(new {data = false});
+                return Json(new { data = false });
             }
         }
     }

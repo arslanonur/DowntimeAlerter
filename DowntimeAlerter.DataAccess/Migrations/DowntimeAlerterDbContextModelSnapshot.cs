@@ -43,7 +43,7 @@ namespace DowntimeAlerter.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Logs", t => t.ExcludeFromMigrations());
+                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("DowntimeAlerter.Core.Models.NotificationLogs", b =>
