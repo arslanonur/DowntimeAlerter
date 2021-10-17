@@ -47,18 +47,20 @@
                         </span><span class="pcoded-mtext">Users</span>
                     </a>
                 </li>
-
-                <li class="nav-item pcoded-hasmenu" style="float: right; right: 0;">
-                    <a href="#!" class="nav-link ">
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Log")" class="nav-link ">
                         <span class="pcoded-micon">
-                            <i class="feather icon-lock"></i>
-                        </span><span class="pcoded-mtext">Authentication</span>
+                            <i class="feather icon-log-in"></i>
+                        </span><span class="pcoded-mtext">Logs</span>
                     </a>
-                    <ul class="pcoded-submenu">
-                        <li>
-                            <a href="@Url.Action("Logout", "Login")" target="_blank">Logout</a>
-                        </li>
-                    </ul>
+                </li>
+
+                <li class="nav-item" style="float: right; right: 0;">
+                    <a href="@Url.Action("Logout", "Login")" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-log-out"></i>
+                        </span><span class="pcoded-mtext">Log Out</span>
+                    </a>                    
                 </li>
             </ul>
 
