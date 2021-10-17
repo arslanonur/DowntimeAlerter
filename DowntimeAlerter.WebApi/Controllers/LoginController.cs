@@ -58,7 +58,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logService.LogError(ex.Message);
+                _logService.LogError(ex.Message, ex.InnerException.Message);
                 return Json(new { success = false, msg = "An error was occured" });
             }
 
@@ -80,7 +80,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logService.LogError(ex.Message);
+                _logService.LogError(ex.Message, ex.InnerException.Message);
             }
 
             return RedirectToAction("Login");

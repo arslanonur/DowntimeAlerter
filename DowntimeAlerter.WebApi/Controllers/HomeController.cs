@@ -35,7 +35,7 @@ namespace DowntimeAlerter.WebApi.Controllers
         {
             try
             {                
-                await _logService.LogInfo("Entered Home Page");
+                await _logService.LogInfo("Home page visited.");
 
                 var sites = await _siteService.GetAllSites();
                 var siteResources = _mapper.Map<IEnumerable<Site>, IEnumerable<SiteDTO>>(sites);
@@ -51,7 +51,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                await _logService.LogError(ex.Message);
+                await _logService.LogError(ex.Message, ex.InnerException.Message);
             }
 
             return View();

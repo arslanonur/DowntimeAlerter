@@ -37,7 +37,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                await _logService.LogError(ex.Message);
+                await _logService.LogError(ex.Message, ex.InnerException.Message);
             }
 
             return View(new UserDTO());
@@ -87,7 +87,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                await _logService.LogError(ex.Message);
+                await _logService.LogError(ex.Message, ex.InnerException.Message);
                 return Json(new { success = false, msg = ex.Message });
             }
         }
@@ -109,7 +109,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                await _logService.LogError(ex.Message);
+                await _logService.LogError(ex.Message, ex.InnerException.Message);
                 return Json(new { success = false, msg = ex.Message });
             }
         }

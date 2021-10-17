@@ -12,6 +12,6 @@ namespace DowntimeAlerter.Core.Services
         Task<IEnumerable<Log>> GetLogs();
         Task<Log> GetLog(int id);
         Task LogInfo(string message);
-        Task LogError(string exception);
+        Task LogError(string exception,string message);
     }
 }

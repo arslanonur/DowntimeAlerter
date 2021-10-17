@@ -15,6 +15,7 @@ using System.Net.Http;
 using Hangfire;
 using Hangfire.Storage;
 using DowntimeAlerter.WebApi.ActionFilters;
+using System.Threading.Tasks;
 
 namespace DowntimeAlerter.WebApi.Controllers
 {
@@ -22,24 +23,24 @@ namespace DowntimeAlerter.WebApi.Controllers
     public class JobController : Controller
     {
         private readonly HttpClient _httpClient;
-        private readonly ILogService _logger;
+        private readonly ILogService _logService;
         private readonly MailSettings _mailSettings;
         private readonly IMapper _mapper;
         private readonly INotificationLogsService _notificaitionLogService;
         private readonly ISiteService _siteService;
 
-        public JobController(ILogService logger, ISiteService siteService, IMapper mapper,
+        public JobController(ILogService logService, ISiteService siteService, IMapper mapper,
             IOptions<MailSettings> mailSettings, INotificationLogsService notificaitionLogService)
         {
             _siteService = siteService;
             _notificaitionLogService = notificaitionLogService;
-            _logger = logger;
+            _logService = logService;
             _mapper = mapper;
             _httpClient = new HttpClient();
             _mailSettings = mailSettings.Value;
         }
 
-        public void StartRecurringNotificationJob()
+        public async Task StartRecurringNotificationJobAsync()
         {
             try
             {   
@@ -55,7 +56,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                await _logService.LogError(ex.Message,ex.InnerException.Message);
             }
 
         }
@@ -72,8 +73,7 @@ namespace DowntimeAlerter.WebApi.Controllers
                     try
                     {
                         var userEmails = item.Email;
-                        SendEmailToSiteUsers(userEmails, item);
-                        _logger.LogInfo("Mail Sended : " + userEmails + " to " + item.Email);
+                        SendEmailToSiteUsers(userEmails, item);                        
                     }
                     catch (Exception ex)
                     {
@@ -84,8 +84,8 @@ namespace DowntimeAlerter.WebApi.Controllers
                         notificaitionLog.State = "Name Not Resolved";
                         notificaitionLog.NotificationType = NotificationType.Email;
                         SaveNotificatonLog(notificaitionLog);
-                        _logger.LogError("An error occured for " + item.Name +
-                                         " while checking health of it. System Message:" +
+                        _logService.LogError("An error occured for " + item.Name +
+                                         " while checking health of it. ",
                                          ex.Message);
                     }
 
@@ -94,7 +94,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logService.LogError(ex.Message, ex.InnerException.Message);
             }
         }
         public void SendEmail(MailRequest mailRequest)
@@ -117,7 +117,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logService.LogError(ex.Message, ex.InnerException.Message);
             }
         }
         public void SendEmailToSiteUsers(string userEmail, SiteDTO site)
@@ -143,7 +143,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logService.LogError(ex.Message, ex.InnerException.Message);
             }
 
         }
@@ -170,13 +170,11 @@ namespace DowntimeAlerter.WebApi.Controllers
                 {
                     foreach (var recurringJob in connection.GetRecurringJobs())
                         RecurringJob.RemoveIfExists(recurringJob.Id);
-
-                    _logger.LogInfo("Removed Jobs");
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logService.LogError(ex.Message, ex.InnerException.Message);
             }
 
         }
@@ -189,7 +187,7 @@ namespace DowntimeAlerter.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logService.LogError(ex.Message, ex.InnerException.Message);
             }
         }
 
