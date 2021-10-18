@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DowntimeAlerter.WebApi.DTO.LogDTO>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Application Logs</h5>
+    </div>
+    <div class="card-body table-border-style">
+        <div class="table-responsive" id="dataTable">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Level</th>
+                        <th>Message</th>
+                        <th>Error Exception</th>
+                        <th>Time Stamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ var rowNum = 0; }
+                    @foreach (var item in Model)
+                    {
+                        rowNum++;
+                        @if (item.Level == "Error")
+                        {
+                            <tr class="">
+                                <td>@rowNum</td>
+                                <td style="background: #ffa5a5;">@item.Level</td>
+                                <td>@item.Message</td>
+                                <td>@item.Exception</td>
+                                <td>@item.TimeStamp.ToString()</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="">
+                                <td>@rowNum</td>
+                                <td style="background: #cce4af; ">@item.Level</td>
+                                <td>@item.Message</td>
+                                <td>@item.Exception</td>
+                                <td>@item.TimeStamp.ToString()</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
